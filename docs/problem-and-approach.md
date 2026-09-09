@@ -1,74 +1,74 @@
-# Problem and approach
+# Проблема и подход
 
-An operational knowledge base is a map an agent can execute against. A note dump is a pile of text that looks complete and still leaves the next chat guessing.
+Операционная база знаний — это карта, по которой агент может действовать. Свалка заметок — это текст, который выглядит полным, но следующий чат всё равно угадывает.
 
-This template publishes the current numbered vault (`00_` through `70_` plus `90_`), not the thinner April tree. The three source chats are packaging (`d1c207fb-9854-441f-8c16-c0be2ef6faff`), research archive (`0aac62bb-906d-43c4-830a-04136cd73ae0`), and fleet memory (`626af52f-5bbf-4146-a6dc-653f3318aa49`). Do not invent further chat IDs.
+Этот шаблон публикует текущее нумерованное хранилище (`00_`–`70_` плюс `90_`), а не урезанное апрельское дерево. Три исходных чата: упаковка (`d1c207fb-9854-441f-8c16-c0be2ef6faff`), архив исследований (`0aac62bb-906d-43c4-830a-04136cd73ae0`) и память флота (`626af52f-5bbf-4146-a6dc-653f3318aa49`). Новые chat ID не выдумывать.
 
-## Operational KB vs note dump
+## Операционный KB vs свалка заметок
 
-A note dump stores prose. An operational KB stores commands, absolute project paths, stack facts, and links an agent can follow in one or two searches.
+Свалка хранит прозу. Операционный KB хранит команды, абсолютные пути проектов, факты стека и связи, которые агент находит за один-два поиска.
 
-| Note dump | Operational KB |
-|-----------|----------------|
-| Descriptive essays after the fact | Same-turn updates after code, infra, or schema change |
-| Bare `[[runbook]]` and orphan pages | Path-qualified wikilinks and `## Related` both ways |
-| Identical tags on every file | Contextual YAML tags plus `last_verified` / `change_source` |
-| Memory hoped for in the model | Disk: vault notes, ADRs, AST graph in the git repo |
-| Finished research buried in chat | Indexed runs under `70_researches/` |
+| Свалка заметок | Операционный KB |
+|----------------|-----------------|
+| Описательные эссе после факта | Обновления в том же ходе после изменения кода, инфры или схемы |
+| Голый `[[runbook]]` и сироты | Wikilink с путём и двусторонний `## Related` |
+| Одинаковые теги на каждом файле | Контекстные YAML-теги плюс `last_verified` / `change_source` |
+| Память «надеемся на модель» | Диск: заметки vault, ADR, AST-граф в git-репозитории |
+| Законченное исследование похоронено в чате | Проиндексированные прогоны в `70_researches/` |
 
-If a note cannot tell an agent where the repo is, how to run it, and what not to touch, it is not operational yet.
+Если заметка не говорит агенту, где репозиторий, как его запускать и чего не трогать, она ещё не операционная.
 
-## Why Obsidian + Cursor
+## Зачем Obsidian + Cursor
 
-Cursor is the writer and reader. Obsidian is the graph, the daily UI, and the Local REST surface.
+Cursor — писатель и читатель. Obsidian — граф, повседневный UI и поверхность Local REST.
 
-- The vault is a Cursor workspace. Agents read markdown first, then write notes after they change code.
-- Wikilinks and numbered folders give a durable map. The model does not have to rediscover hosts, stacks, or consumers each session.
-- Obsidian Local REST MCP is the preferred write path when it is up. When MCP is down, write the same files on disk and say so.
-- Project git remotes stay in each repo. The vault holds cards and links, not a second copy of the source tree.
+- Vault — это workspace Cursor. Агенты сначала читают markdown, затем пишут заметки после изменения кода.
+- Wikilink и нумерованные папки дают устойчивую карту. Модели не нужно заново открывать хосты, стеки и потребителей в каждой сессии.
+- Obsidian Local REST MCP — предпочтительный путь записи, пока он жив. Если MCP недоступен, пишите те же файлы на диск и скажите об этом.
+- Git-remote проектов остаются в каждом репозитории. Vault держит карточки и связи, а не вторую копию дерева исходников.
 
-The pairing is intentional: Cursor without a vault forgets; a vault without a completion gate drifts.
+Связка намеренная: Cursor без vault забывает; vault без completion gate расползается.
 
-## How the design evolved
+## Как эволюционировал дизайн
 
-Do not roll the template back to the April packaging tree. That chat created `00_profile` through `50_runbooks` plus `90_archive`, root and profile `agent-context.md`, YAML frontmatter, the always-on maintenance rule, and later `requirements.md` plus `## Project Location`. It did not specify `60_skills/`, `70_researches/`, `decisions.md`, or the fleet-memory hub.
+Не откатывать шаблон к апрельскому дереву упаковки. Тот чат создал `00_profile`–`50_runbooks` плюс `90_archive`, корневой и профильный `agent-context.md`, YAML frontmatter, всегда включённое правило сопровождения, позже — `requirements.md` и `## Project Location`. Он не задавал `60_skills/`, `70_researches/`, `decisions.md` и хаб fleet-memory.
 
-| Layer | Problem it closed | Source chat |
-|-------|-------------------|-------------|
-| Numbered `00`–`50` + `90` | No durable map of projects, servers, or DB | `d1c207fb` |
-| Maintenance protocol + markdown standards | Docs drifted; no completion gate; inconsistent Stack / Related / H1 | `d1c207fb` |
-| `requirements.md` + Project Location | Missing install surface and absolute repo path | `d1c207fb` |
-| `60_skills/` registry | Skills lived only on disk; no same-turn registration | later ops; present before research chat |
-| `70_researches/` + `save-research` | Deep-research runs were repeated or lost; no index or dedup | `0aac62bb` |
-| `decisions.md` + `session-distill` | New chats forgot why / workaround / do-not-touch | `626af52f` (home); `0aac62bb` (do not fork under 70) |
-| Fleet-memory stack (no product memory) | Temptation to add a second memory engine | `626af52f` |
-| `vault-router` | Cross-project answers needed one vault truth + one active root | `626af52f` |
-| Audit / verification runbooks | SCM wording, orphans, credential hygiene needed a ledger | ops after packaging |
+| Слой | Какую проблему закрыл | Исходный чат |
+|------|------------------------|--------------|
+| Нумерованные `00`–`50` + `90` | Не было устойчивой карты проектов, серверов и БД | `d1c207fb` |
+| Протокол сопровождения + стандарты markdown | Документы дрейфовали; не было completion gate; разные Stack / Related / H1 | `d1c207fb` |
+| `requirements.md` + Project Location | Не было поверхности установки и абсолютного пути репозитория | `d1c207fb` |
+| Реестр `60_skills/` | Skills жили только на диске; не было регистрации в том же ходе | поздние ops; уже были до research-чата |
+| `70_researches/` + `save-research` | Deep-research прогоны повторялись или терялись; не было индекса и дедупа | `0aac62bb` |
+| `decisions.md` + `session-distill` | Новые чаты забывали why / workaround / do-not-touch | `626af52f` (дом); `0aac62bb` (не форкать под 70) |
+| Стек памяти флота (без product memory) | Искушение поставить второй движок памяти | `626af52f` |
+| `vault-router` | Кросс-проектные ответы требовали одну истину vault и один активный корень | `626af52f` |
+| Runbook аудита / верификации | Формулировки SCM, сироты, гигиена секретов нуждались в журнале | ops после упаковки |
 
-Current numbered sections are the template canon.
+Текущие нумерованные разделы — канон шаблона.
 
-## Rejected alternatives
+## Отклонённые альтернативы
 
-These were considered and rejected. The template must not reintroduce them.
+Их рассматривали и отвергли. Шаблон не должен возвращать их обратно.
 
-**Mem0 / Antigravity Memory / agy-memory / a second memory SQLite.** Cursor has no automatic memory between agents. Extra product memory is a second engine on top of markdown. Instant Grep is search, not experience. Decision: three disk layers (AST graph in the repo, ADRs in the vault, one router + one root). Chat `626af52f`.
+**Mem0 / Antigravity Memory / agy-memory / второй SQLite «памяти».** У Cursor нет автоматической памяти между агентами. Продуктовая память — второй движок поверх markdown. Instant Grep — это поиск, не опыт. Решение: три слоя на диске (AST-граф в репозитории, ADR в vault, один роутер + один корень). Чат `626af52f`.
 
-**Flat `70_researches/raw/` + `70_researches/structured/` + a single INDEX.** That was the user-proposed tree. After structure research it lost ops, registry, evergreen, and navigation. Canon is Johnny Decimal categories 70–75 *inside* `70_researches/`. Chat `0aac62bb`.
+**Плоские `70_researches/raw/` + `70_researches/structured/` + один INDEX.** Так предложил пользователь. После исследования структуры пропали ops, registry, evergreen и навигация. Канон — категории Johnny Decimal 70–75 *внутри* `70_researches/`. Чат `0aac62bb`.
 
-**Dumping or embedding all chats.** Completeness is every known research run in the registry and SOURCES, not hundreds of chat transcripts. Most chats are not unique research. Chat `0aac62bb`.
+**Дамп или эмбеддинги всех чатов.** Полнота — это каждый известный research-прогон в registry и SOURCES, а не сотни транскриптов. Большинство чатов — не уникальное исследование. Чат `0aac62bb`.
 
-**PARA as a second folder tree.** PARA statuses are metadata on a run (`research_status`, `fresh_until`, `superseded_by`). Finished runs do not move to `90_archive/`. Moving folders to express lifecycle was rejected. Chat `0aac62bb`.
+**PARA как второе дерево папок.** Статусы PARA — только метаданные прогона (`research_status`, `fresh_until`, `superseded_by`). Завершённые прогоны не переезжают в `90_archive/`. Двигать папки, чтобы выразить жизненный цикл, отвергнуто. Чат `0aac62bb`.
 
-Also rejected, and still out of scope:
+Также отвергнуто и по-прежнему вне скоупа:
 
-- Identical YAML tags on every note (`d1c207fb`).
-- A second `decisions` tree under `70_researches/` (`0aac62bb`).
-- Graphify as semantic memory, LLM labels, or `export obsidian` into `10_projects/` (`626af52f`).
-- Folders plus a long `alwaysApply` rule as the only research process (`0aac62bb`).
-- Treating a research `poll` as discovery (`0aac62bb`).
+- Одинаковые YAML-теги на каждой заметке (`d1c207fb`).
+- Второе дерево `decisions` под `70_researches/` (`0aac62bb`).
+- Graphify как semantic memory, LLM-метки или `export obsidian` в `10_projects/` (`626af52f`).
+- Папки плюс длинное правило `alwaysApply` как единственный research-процесс (`0aac62bb`).
+- Считать research `poll` открытием (`0aac62bb`).
 
-## What this template ships
+## Что поставляет этот шаблон
 
-Conceptual docs in `docs/`, an anonymized `vault-skeleton/`, two example project cards (`example_library`, `example_service`), adapted Cursor rules, and four vault-ops skill briefs. It does not ship internal runbooks, live hosts, or credentials.
+Концептуальные документы в `docs/`, анонимизированный `vault-skeleton/`, две примерные карточки проектов (`example_library`, `example_service`), адаптированные правила Cursor и четыре brief vault-ops skills. Внутренние runbook, живые хосты и учётные данные не поставляются.
 
-Team git hosting may be self-hosted Forgejo. This repository is a public GitHub distribution channel. Those are different remotes; see [cursor-integration.md](cursor-integration.md).
+Командный git-хостинг может быть self-hosted Forgejo. Этот репозиторий — публичный канал распространения на GitHub. Это разные remote; см. [cursor-integration.md](cursor-integration.md).

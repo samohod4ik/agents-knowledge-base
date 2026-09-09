@@ -1,90 +1,92 @@
-# Cursor integration
+# Интеграция с Cursor
 
-Wire Cursor to the vault so agents read the map first and update notes before they stop. This file is the installer view. Conceptual why lives in [problem-and-approach.md](problem-and-approach.md).
+Свяжите Cursor с vault так, чтобы агенты сначала читали карту и обновляли заметки до остановки. Этот файл — вид установщика. Зачем так устроено — в [problem-and-approach.md](problem-and-approach.md).
 
-## Copy vault rules
+## Скопировать правила vault
 
-The skeleton ships two rules under `vault-skeleton/.cursor/rules/`:
+Скелет везёт два правила в `vault-skeleton/.cursor/rules/`:
 
-| File | Apply |
-|------|--------|
+| Файл | Применение |
+|------|------------|
 | `obsidian-vault-maintenance-protocol.mdc` | `alwaysApply: true` |
 | `obsidian-vault-markdown-standards.mdc` | `globs: "**/*.md"` |
 
-Steps:
+Шаги:
 
-1. Open `vault-skeleton` (or your copy) as an Obsidian vault *and* as a Cursor folder.
-2. Keep those two files at `<VAULT>/.cursor/rules/`.
-3. Optional: copy the same pair into a project repo if that repo's agents also edit the vault. Shared team rule packs belong in the project `.cursor/rules/<team>/` tree; personal rules stay beside them, not inside the shared pack.
-4. Restart or reopen the Cursor window so the rules load. Confirm both files appear under Project Rules.
+1. Откройте `vault-skeleton` (или свою копию) как vault Obsidian *и* как папку Cursor.
+2. Держите эти два файла в `<VAULT>/.cursor/rules/`.
+3. По желанию скопируйте ту же пару в репозиторий проекта, если его агенты тоже правят vault. Общие командные пакеты правил — в дереве проекта `.cursor/rules/<team>/`; личные правила рядом, не внутри общего пакета.
+4. Перезапустите или заново откройте окно Cursor, чтобы правила загрузились. Убедитесь, что оба файла видны в Project Rules.
 
-Adapted template rules keep update mapping, frontmatter, H1 table, and the completion gate. They do **not** hard-code an internal Forgejo URL. Write your own `<GIT_REMOTE>`.
+Адаптированные правила шаблона сохраняют карту обновлений, frontmatter, таблицу H1 и completion gate. Они **не** зашивают внутренний URL Forgejo. Пропишите свой `<GIT_REMOTE>`.
 
-A `docs-before-commit` reminder, if you add one later, only nags. It does not write notes and does not fail the commit.
+Напоминание `docs-before-commit`, если добавите позже, только напоминает. Оно не пишет заметки и не валит commit.
 
-## Install the four skill briefs
+## Установить четыре skill brief
 
-This repo ships briefs in `skills/`. They are procedures, not a dump of internal host automation.
+Этот репозиторий везёт brief в `skills/`. Это регламенты, а не дамп внутренней автоматизации хостов.
 
-| Brief | Install as | When |
-|-------|------------|------|
-| `skills/projects-data-verification/` | vault audit / rules integrity | Before you claim docs are done |
-| `skills/vault-router/` | cross-project question, crowded sidebar | Before opening a second root |
-| `skills/session-distill/` | durable why / workaround / do-not-touch | After a semantic session, before commit |
-| `skills/save-research/` | Parallel or local deep research | Only launcher into `70_researches/` |
+| Brief | Ставить как | Когда |
+|-------|-------------|-------|
+| `skills/projects-data-verification/` | аудит vault / целостность rules | Прежде чем заявить, что документы готовы |
+| `skills/vault-router/` | кросс-вопрос, переполненный sidebar | До открытия второго корня |
+| `skills/session-distill/` | устойчивые why / workaround / do-not-touch | После смысловой сессии, до commit |
+| `skills/save-research/` | Parallel или локальный deep research | Единственный launcher в `70_researches/` |
 
-Install:
+Установка:
 
-1. Copy each folder to `<SKILLS_ROOT>/<skill-name>/` so `SKILL.md` sits at that path. `<SKILLS_ROOT>` is your user skills directory or a project `.cursor/skills/` directory.
-2. Point paths inside the brief at `<VAULT>` and `<SKILLS_ROOT>`. Do not paste another team's absolute disks.
-3. Run that skill's `scripts/doctor.py` when the brief includes one. Doctor first; then the workflow.
-4. Register a pointer note at `60_skills/workspace/<skill-name>.md` and link it from `60_skills/README.md` in the same turn.
+1. Скопируйте каждую папку в `<SKILLS_ROOT>/<skill-name>/`, чтобы `SKILL.md` лежал по этому пути. `<SKILLS_ROOT>` — ваш каталог user skills или `.cursor/skills/` проекта.
+2. Внутри brief направьте пути на `<VAULT>` и `<SKILLS_ROOT>`. Не вставляйте абсолютные диски чужой команды.
+3. Если в brief есть `scripts/doctor.py` — запустите его. Сначала doctor, затем workflow.
+4. Зарегистрируйте указатель `60_skills/workspace/<skill-name>.md` и свяжите его с `60_skills/README.md` в том же ходе.
 
-Do not install Mem0, Antigravity Memory, or a second memory MCP as a substitute for these four. Do not ship credentialed skills (internal SSH, deploy-to-named-host, org-only reports) as part of this template.
+Не ставить Mem0, Antigravity Memory или второй MCP «памяти» вместо этих четырёх. Не везти в шаблоне skills с учётными данными (внутренний SSH, deploy на именованный хост, орг-отчёты).
 
 ## Obsidian Local REST MCP
 
-Preferred write path: Obsidian **Local REST API** community plugin, then a Cursor MCP server that talks to that HTTP API. Prefer this over a generic filesystem MCP for vault edits.
+Предпочтительный путь записи: community-плагин Obsidian **Local REST API**, затем MCP-сервер Cursor, который ходит в этот HTTP API. Для правок vault это лучше generic filesystem MCP.
 
-High-level setup (no secrets in git):
+Настройка на высоком уровне (секреты не в git):
 
-1. In Obsidian, enable Community plugins and install Local REST API.
-2. Note the listen port from the plugin settings. Leave the API key in the plugin UI.
-3. In Cursor MCP config (user-level), add an Obsidian vault server whose URL is `http://127.0.0.1:<PORT>` and whose auth header uses the plugin key from your local secret store.
-4. Point the server at this vault path (`<VAULT>`). Tool names typically include list/get/write/patch/search on notes.
-5. Never commit `.obsidian/plugins/obsidian-local-rest-api/data.json`. That file holds `apiKey` and key material. This repo's `.gitignore` already excludes it.
+1. В Obsidian включите Community plugins и установите Local REST API.
+2. Запомните порт из настроек плагина. Ключ API оставьте в UI плагина.
+3. В конфиге MCP Cursor (user-level) добавьте сервер vault Obsidian с URL `http://127.0.0.1:<PORT>`; заголовок авторизации берёт ключ плагина из вашего локального хранилища секретов.
+4. Направьте сервер на путь этого vault (`<VAULT>`). Имена инструментов обычно включают list/get/write/patch/search по заметкам.
+5. Никогда не коммитьте `.obsidian/plugins/obsidian-local-rest-api/data.json`. Там лежат `apiKey` и ключевой материал. `.gitignore` этого репозитория уже исключает файл.
 
-If the MCP server is red or the REST port is wrong, write markdown on disk and say that MCP was skipped. A green MCP toggle is not proof the REST port matches.
+Если MCP-сервер красный или порт REST не тот, пишите markdown на диск и скажите, что MCP пропущен. Зелёный тумблер MCP не доказывает, что порт REST совпал.
 
-Do not put the API key, Bearer tokens, or plugin private keys in vault notes or in this repository.
+Не кладите API key, Bearer-токены и закрытые ключи плагина ни в заметки vault, ни в этот репозиторий.
 
-## Pre-completion checklist
+<a id="pre-completion-checklist"></a>
 
-Copy this into your maintenance runbook. A task is unfinished while any box that applies is unchecked.
+## Чеклист перед завершением
 
-- [ ] YAML frontmatter closed (`---` / tags / `last_verified` / `change_source` / `---`).
-- [ ] `## Stack` has Python, DB, Selenium (yes/no), and core libs on project cards.
-- [ ] Wikilinks are path-qualified: `[[10_projects/example_library/runbook]]`, not `[[runbook]]`.
-- [ ] No self-links in `## Related`.
-- [ ] Git remotes in notes match *your* `<GIT_REMOTE>`; no leftover internal host URLs.
-- [ ] Secrets are masked. Infra points at `20_infra/access-matrix` rows with `***` or `secret_ref`, never a second plaintext copy.
-- [ ] Profile hub (`00_profile/tech-stack`, `00_profile/developer-profile`) still matches Active Projects.
-- [ ] New or changed Cursor skills are registered in `60_skills/README.md`.
-- [ ] Optional: `python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py` — `summary.errors = 0` including category `scm`.
+Скопируйте это в свой runbook сопровождения. Задача не закончена, пока применимый пункт не отмечен.
 
-## Git hosting: GitHub template vs team Forgejo
+- [ ] YAML frontmatter закрыт (`---` / tags / `last_verified` / `change_source` / `---`).
+- [ ] В карточках проектов `## Stack` содержит Python, DB, Selenium (да/нет) и core libs.
+- [ ] Wikilink с путём: `[[10_projects/example_library/runbook]]`, не `[[runbook]]`.
+- [ ] Нет self-link в `## Related`.
+- [ ] Git-remote в заметках совпадают с *вашим* `<GIT_REMOTE>`; нет оставшихся внутренних URL хостов.
+- [ ] Секреты замаскированы. Инфра ссылается на строки `20_infra/access-matrix` с `***` или `secret_ref`, без второй копии открытым текстом.
+- [ ] Хаб профиля (`00_profile/tech-stack`, `00_profile/developer-profile`) всё ещё совпадает с Active Projects.
+- [ ] Новые или изменённые Cursor skills зарегистрированы в `60_skills/README.md`.
+- [ ] Опционально: `python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py` — `summary.errors = 0`, включая категорию `scm`.
 
-| Channel | Role |
-|---------|------|
-| This GitHub repository | Public distribution of the *template* |
-| Team self-hosted Forgejo (or your chosen host) | Canonical remotes for *your* working repos |
+## Git-хостинг: шаблон GitHub vs командный Forgejo
 
-The originating team vault documents Forgejo as the only git hosting for operational notes. That policy is local to that team. This template's publishing remote is GitHub. Do not point cloned example projects at the publisher's GitHub unless you intend to fork the template itself.
+| Канал | Роль |
+|-------|------|
+| Этот репозиторий GitHub | Публичное распространение *шаблона* |
+| Командный self-hosted Forgejo (или выбранный вами хост) | Канонические remote *ваших* рабочих репозиториев |
 
-When you fill the skeleton:
+Исходный командный vault документирует Forgejo как единственный git-хостинг операционных заметок. Эта политика локальна для той команды. Публикующий remote этого шаблона — GitHub. Не направляйте склонированные example-проекты на GitHub издателя, если вы не собираетесь форкать сам шаблон.
 
-- Set `<GIT_REMOTE>` to your real clone URL.
-- Keep `gh` (if you use it) aimed at GitHub.com for this template only.
-- Keep team issue/PR tools aimed at your Forgejo or other internal host. Do not treat GitHub as the internal forge.
+Когда заполняете скелет:
 
-No account passwords, LAN literals, or plugin keys belong in either channel's markdown.
+- Задайте `<GIT_REMOTE>` своим реальным URL клона.
+- `gh` (если пользуетесь) держите нацеленным на GitHub.com только для этого шаблона.
+- Инструменты issue/PR команды направляйте на ваш Forgejo или другой внутренний хост. Не считайте GitHub внутренним forge.
+
+Пароли учёток, литералы LAN и ключи плагинов не должны попадать в markdown ни одного из каналов.

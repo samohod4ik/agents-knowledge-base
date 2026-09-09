@@ -1,56 +1,57 @@
-# Architecture
+# Архитектура
 
-The live vault has no `80_*` folder. The public skeleton follows the same map: `00_` through `70_` plus `90_`. Do not add a parallel PARA tree or flatten research into `raw/` and `structured/`.
+В живом vault нет папки `80_*`. Публичный скелет следует той же карте: `00_`–`70_` плюс `90_`. Не добавлять параллельное дерево PARA и не сплющивать исследования в `raw/` и `structured/`.
 
-## Numbered sections
+## Нумерованные разделы
 
-| Section | Role |
-|---------|------|
-| `00_profile/` | Operator profile, tech stack, English agent hub |
-| `10_projects/` | Per-slug README, architecture, runbook, requirements, often `decisions.md` |
-| `20_infra/` | Servers, networks, access matrix (masked), Cursor MCP catalog |
-| `30_db/` | Connections with masked secrets, schemas, important queries |
-| `40_patterns/` | Coding and git patterns, fleet-memory stack, shared Cursor-rules pattern |
-| `50_runbooks/` | Maintenance, audit, skills guides, deploy and incident |
-| `60_skills/` | Registry of *local* Cursor project skills (not default Cursor skills) |
-| `70_researches/` | Johnny Decimal research archive (ops / runs / evergreen / MOCs) |
-| `90_archive/` | Deprecated notes |
-| `.cursor/rules/` | Vault maintenance protocol + markdown standards |
+| Раздел | Назначение |
+|--------|------------|
+| `00_profile/` | Профиль оператора, стек, хаб агента (английский `agent-context`) |
+| `10_projects/` | На slug: README, architecture, runbook, requirements, часто `decisions.md` |
+| `20_infra/` | Серверы, сети, access-matrix (маски), каталог Cursor MCP |
+| `30_db/` | Подключения с маскированными секретами, схемы, важные запросы |
+| `40_patterns/` | Паттерны кода и git, стек памяти флота, паттерн общих Cursor rules |
+| `50_runbooks/` | Сопровождение, аудит, гайды по skills, deploy и incident |
+| `60_skills/` | Реестр *локальных* project skills Cursor (не дефолтные skills Cursor) |
+| `70_researches/` | Архив исследований Johnny Decimal (ops / runs / evergreen / MOC) |
+| `90_archive/` | Устаревшие заметки |
 
-Root files the agent should expect: `README.md` (sections + Active Projects) and `agent-context.md` (short operating rules).
+Правила Cursor живут **вне** нумерации: `.cursor/rules/` — протокол сопровождения vault и стандарты markdown. Это конфиг workspace, не раздел `00_`–`90_`.
 
-Project cards use the quartet plus decisions. Do not model a card on a stub that lacks architecture, runbook, and requirements. In this template the examples are `example_library` and `example_service`.
+Корневые файлы, которые агент должен ждать: `README.md` (разделы + Active Projects) и `agent-context.md` (короткие правила работы).
 
-## Agent read-first order
+Карточки проектов — квартет плюс decisions. Не брать за образец заглушку без architecture, runbook и requirements. В этом шаблоне примеры — `example_library` и `example_service`.
 
-1. `README.md` — numbered sections and Active Projects.
-2. Root `agent-context.md` — short local rules.
-3. `00_profile/agent-context.md` — operating hub (memory stance, update rules).
-4. `00_profile/developer-profile.md` and `00_profile/tech-stack.md`.
-5. By task:
+## Порядок чтения агентом
+
+1. `README.md` — нумерованные разделы и Active Projects.
+2. Корневой `agent-context.md` — короткие локальные правила.
+3. `00_profile/agent-context.md` — операционный хаб (позиция по памяти, правила обновления).
+4. `00_profile/developer-profile.md` и `00_profile/tech-stack.md`.
+5. По задаче:
    - skills: `60_skills/README.md`
-   - memory: `40_patterns/fleet-memory-stack.md`
-   - shared rules pattern: `40_patterns/rr77-cursor-rules.md` (generic shared-rules note in the skeleton)
-   - process: `50_runbooks/maintenance.md`
-   - MCP catalog: `20_infra/cursor-mcp.md`
+   - память: `40_patterns/fleet-memory-stack.md`
+   - паттерн общих правил: `40_patterns/rr77-cursor-rules.md` (в скелете — обобщённая заметка, не командный канон)
+   - процесс: `50_runbooks/maintenance.md`
+   - каталог MCP: `20_infra/cursor-mcp.md`
 
-Memory stance at the hub: Graphify AST + `decisions.md` + vault-router. No Mem0 or Antigravity. Deep research goes to `70_researches/` via `save-research`.
+Позиция хаба по памяти: Graphify AST + `decisions.md` + vault-router. Без Mem0 и Antigravity. Deep research идёт в `70_researches/` через `save-research`.
 
-## Note conventions
+## Соглашения по заметкам
 
 ### Frontmatter
 
-On every meaningful edit:
+На каждом содержательном правке:
 
-- Contextual `tags` (not the same list on every note)
+- Контекстные `tags` (не один и тот же список на каждой заметке)
 - `last_verified: YYYY-MM-DD`
-- `change_source` (commit, ticket, incident, or task name)
-- Closing `---` so YAML stays valid
+- `change_source` (commit, ticket, incident или имя задачи)
+- Закрывающий `---`, чтобы YAML оставался валидным
 
-### Headings
+### Заголовки
 
-| Doc type | H1 |
-|----------|-----|
+| Тип документа | H1 |
+|---------------|-----|
 | README | `# {project}` |
 | architecture | `# {project} — architecture` |
 | runbook | `# {project} — runbook` |
@@ -58,60 +59,60 @@ On every meaningful edit:
 | skill index | `# {owner} — skills` |
 | skill note | `# {skill-name}` |
 
-Project README files also need `## Project Location` (absolute repo path), normalized `## Stack`, and a link to `requirements.md`.
+В README проекта также нужны `## Project Location` (абсолютный путь репозитория), нормализованный `## Stack` и ссылка на `requirements.md`.
 
-`## Stack` order: Python version, DB type/version or contour, Selenium yes/no, core libraries.
+Порядок `## Stack`: версия Python, тип/версия БД или контур, Selenium да/нет, основные библиотеки.
 
-### Wikilinks and Related
+### Wikilink и Related
 
-- Path-qualified only: `[[10_projects/<project>/runbook]]`, never bare `[[runbook]]`.
-- `## Related` on both ends for project, infra, DB, and runbook links.
-- No self-links in `## Related`.
-- Profile hub notes should link to every Active Project README.
-- Skill notes live at `60_skills/<owner>/<skill-name>.md`. Owner is a project slug or `workspace`.
+- Только с путём: `[[10_projects/<project>/runbook]]`, никогда голый `[[runbook]]`.
+- `## Related` с обеих сторон для связей project / infra / DB / runbook.
+- Запрещены self-link в `## Related`.
+- Заметки хаба профиля должны ссылаться на README каждого Active Project.
+- Заметки skills живут в `60_skills/<owner>/<skill-name>.md`. Owner — slug проекта или `workspace`.
 
-Prefer operational sections (Purpose, Run, Risks, Incident, Related) over essays. Commands and paths must be real for *your* machine; use `<PROJECT_ROOT>`, `<VAULT>`, `<SKILLS_ROOT>`, and `<GIT_REMOTE>` until you fill them.
+Предпочитать операционные секции (Purpose, Run, Risks, Incident, Related), а не эссе. Команды и пути должны быть реальными *для вашей* машины; пока не заполнены, используйте `<PROJECT_ROOT>`, `<VAULT>`, `<SKILLS_ROOT>` и `<GIT_REMOTE>`.
 
-## Vault vs git repos
+## Что в vault, что в git-репозиториях
 
-| Artifact | Lives where | Why |
-|----------|-------------|-----|
-| Project cards, infra, DB, runbooks, skills index | Vault | Agent map and same-turn docs |
-| Source code | Each project git repo | The vault is not a second clone |
-| AST graph `graphify-out/graph.json` | Project repo, gitignored | Thousands of nodes; not vault notes |
-| Human graph map `GRAPH_REPORT.md` | Project repo, committed | Reviewable structural map |
-| ADRs / do-not-touch | Vault `10_projects/<slug>/decisions.md` | Session memory on disk |
-| Deep-research packages | Vault `70_researches/` | Outside the fleet-memory stack |
-| Cursor project rules copies | Project `.cursor/rules/` | Shared team pattern; vault holds the explanation |
-| Local REST `apiKey` / plugin private key | Obsidian plugin data (ignored) | Never commit |
+| Артефакт | Где живёт | Зачем |
+|----------|-----------|-------|
+| Карточки проектов, инфра, БД, runbook, индекс skills | Vault | Карта агента и документы того же хода |
+| Исходный код | Git-репозиторий каждого проекта | Vault — не второй клон |
+| AST-граф `graphify-out/graph.json` | Репозиторий проекта, в gitignore | Тысячи узлов; не заметки vault |
+| Человеческая карта `GRAPH_REPORT.md` | Репозиторий проекта, в git | Обозримая структурная карта |
+| ADR / do-not-touch | Vault `10_projects/<slug>/decisions.md` | Память сессии на диске |
+| Пакеты deep-research | Vault `70_researches/` | Вне стека памяти флота |
+| Копии project rules Cursor | `.cursor/rules/` проекта | Общий командный паттерн; vault держит пояснение |
+| Local REST `apiKey` / закрытый ключ плагина | Данные плагина Obsidian (игнор) | Никогда не коммитить |
 
-Graphify extract is structural only (`--code-only`, no LLM labels). Do not `export obsidian` a code graph into `10_projects/`. Do not treat Graphify as semantic memory.
+Extract Graphify только структурный (`--code-only`, без LLM-меток). Не делать `export obsidian` графа кода в `10_projects/`. Не считать Graphify semantic memory.
 
-## Research archive shape
+## Форма архива исследований
 
-Johnny Decimal ids `70.xx` exist only inside `70_researches/`:
+Идентификаторы Johnny Decimal `70.xx` существуют только внутри `70_researches/`:
 
-| Area | Role |
-|------|------|
-| `70_research_ops/` | INDEX, run registry, policy, templates, inbox, LOG, SOURCES |
-| `71_runs/` | Write-once raw packages + rebuildable summaries |
-| `72_knowledge/` | Evergreen notes |
-| `73_mocs/`, `74_exports/`, `75_lifecycle/` | Navigation and lifecycle views |
+| Область | Назначение |
+|---------|------------|
+| `70_research_ops/` | INDEX, registry прогонов, политика, шаблоны, inbox, LOG, SOURCES |
+| `71_runs/` | Write-once сырые пакеты + пересобираемые summaries |
+| `72_knowledge/` | Evergreen-заметки |
+| `73_mocs/`, `74_exports/`, `75_lifecycle/` | Навигация и представления жизненного цикла |
 
-Policy facts the architecture depends on:
+Факты политики, от которых зависит архитектура:
 
-- `save-research` is the only allowed deep-research launcher.
-- Dedup key is scope + question + project-or-problem. No date in the key.
-- Completed runs stay put. Change status fields; do not move them to `90_archive/`.
-- ADR stays in `10_projects/<slug>/decisions.md`. Do not create a decisions fork under `70_`.
-- The template ships empty registry/templates, not live `trun_*` packages.
+- `save-research` — единственный разрешённый launcher deep-research.
+- Ключ дедупа: scope + question + project-or-problem. Даты в ключе нет.
+- Завершённые прогоны остаются на месте. Меняйте поля статуса; не переносите их в `90_archive/`.
+- ADR остаётся в `10_projects/<slug>/decisions.md`. Не создавать форк decisions под `70_`.
+- Шаблон везёт пустые registry/templates, не живые пакеты `trun_*`.
 
-## What is not in this public tree
+## Чего нет в этом публичном дереве
 
-- Operational `10_projects/*` runbooks from the originating vault
-- Access-matrix passwords, plugin `apiKey`, DSN, tokens
-- Production LAN addresses and internal account names
-- Host-bound skills (deploy-to-internal-host, SSH-to-lab, org report generators)
-- Raw research packages under `71_runs/`
+- Операционные runbook `10_projects/*` исходного vault
+- Пароли access-matrix, `apiKey` плагина, DSN, токены
+- Адреса прод-LAN и внутренние имена учёток
+- Skills, привязанные к хосту (deploy на внутренний хост, SSH в лабораторию, генераторы орг-отчётов)
+- Сырые research-пакеты под `71_runs/`
 
-Fill placeholders. Point `<GIT_REMOTE>` at *your* canonical host. This GitHub repo is the template channel, not a substitute for a team Forgejo (or other) remote.
+Заполните плейсхолдеры. Направьте `<GIT_REMOTE>` на *ваш* канонический хост. Этот репозиторий GitHub — канал шаблона, а не замена командному remote Forgejo (или другому внутреннему хосту).
