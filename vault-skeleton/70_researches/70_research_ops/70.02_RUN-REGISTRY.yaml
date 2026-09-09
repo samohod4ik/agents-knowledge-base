@@ -1,0 +1,19 @@
+schema_version: 1
+runs: []
+# Example row (keep commented until a real run exists on your copy):
+# - research_run_id: trun_EXAMPLE
+#   canonical_key: project:example_library|how to model project cards|example_library
+#   query_hash: ""
+#   research_status: planned
+#   review_status: unreviewed
+#   provider: parallel_task_api
+#   provider_task_id: ""
+#   captured_at: "YYYY-MM-DDTHH:MM:SS"
+#   as_of: "YYYY-MM-DD"
+#   fresh_until: "YYYY-MM-DD"
+#   link_target: 10_projects/example_library/README
+#   project: example_library
+#   problem: ""
+#   raw_report: ""
+#   summary: ""
+#   redacted: false
