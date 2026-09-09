@@ -1,7 +1,7 @@
 ---
 tags: [pattern, memory, graphify, cursor, session-distill, vault-router]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: task-6-consistency-fix
 ---
 # Fleet Memory Stack
 
@@ -29,11 +29,12 @@ Cursor не даёт встроенную память между агентам
 - Extract только структурный (`--code-only`). Не считать Graphify semantic memory.
 - Хук `docs-before-commit`, если возьмёте, только *напоминает*. Он не пишет заметки и не строит граф.
 
-Реестр skills и brief появятся в `60_skills/` и в репозитории шаблона `skills/`.
+Реестр skills — [[60_skills/README]]. Brief шаблона — в `skills/` корня репозитория: `projects-data-verification`, `vault-router`, `session-distill`, `save-research`.
 
 ## Related
 
 - [[50_runbooks/maintenance]]
 - [[40_patterns/rr77-cursor-rules]]
 - [[00_profile/agent-context]]
+- [[60_skills/README]]
 - [[70_researches/70_research_ops/70.03_RESEARCH-POLICY]]

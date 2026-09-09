@@ -4,7 +4,7 @@ tags:
   - index
   - entrypoint
 last_verified: 2026-09-09
-change_source: task-5-example-projects
+change_source: task-6-consistency-fix
 ---
 # AgentsKnowledgeBase
 
@@ -23,7 +23,7 @@ change_source: task-5-example-projects
 - [[50_runbooks/obsidian-vault-audit]] — журнал аудита
 - [[70_researches/70_research_ops/70.01_INDEX]] — индекс исследований
 
-Реестр локальных skills появится в `60_skills/README.md`. Карточки проектов — в `10_projects/<slug>/`.
+Реестр локальных skills — [[60_skills/README]]. Brief шаблона лежат в `skills/` корня репозитория. Карточки проектов — в `10_projects/<slug>/`.
 
 ## Sections
 
@@ -61,4 +61,5 @@ change_source: task-5-example-projects
 - [[20_infra/cursor-mcp]]
 - [[50_runbooks/maintenance]]
 - [[40_patterns/fleet-memory-stack]]
+- [[60_skills/README]]
 - [[70_researches/70_research_ops/70.01_INDEX]]
