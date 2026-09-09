@@ -4,7 +4,7 @@ tags:
   - index
   - entrypoint
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: task-5-example-projects
 ---
 # AgentsKnowledgeBase
 
@@ -43,9 +43,10 @@ change_source: task-4-vault-skeleton
 
 ## Active Projects
 
-Пока пусто. Добавьте `[[10_projects/<slug>/README]]` для каждого рабочего проекта.
+- [[10_projects/example_library/README]] — общая Python-библиотека (пример карточки)
+- [[10_projects/example_service/README]] — HTTP/worker-сервис (пример карточки)
 
-Примеры шаблона (отдельный шаг поставки): `example_library`, `example_service`. Не копируйте чужие операционные карточки.
+Только эти два slug. Замените список своими карточками; чужие операционные runbook не копировать.
 
 ## Archive
 
@@ -53,6 +54,8 @@ change_source: task-4-vault-skeleton
 
 ## Related
 
+- [[10_projects/example_library/README]]
+- [[10_projects/example_service/README]]
 - [[00_profile/tech-stack]]
 - [[00_profile/developer-profile]]
 - [[20_infra/cursor-mcp]]
