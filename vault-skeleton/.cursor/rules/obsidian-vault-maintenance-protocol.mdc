@@ -1,0 +1,57 @@
+---
+description: Obsidian Vault Maintenance Protocol for automatic project documentation updates
+alwaysApply: true
+---
+
+# Obsidian Vault Maintenance Protocol
+
+Apply this protocol whenever code, infrastructure, database, or operations context changes.
+
+## Core Behavior
+- Считайте `<VAULT>` операционной базой знаний, а не свалкой заметок.
+- После каждого содержательного изменения обновляйте связанные файлы vault в том же ходе.
+- Если доступен MCP записи — предпочитайте его; иначе правьте файлы на диске.
+
+## Update Mapping
+- Project logic/runtime changes -> update `10_projects/<project>/{README,architecture,runbook}.md`.
+- Dependency changes -> update `10_projects/<project>/requirements.md`.
+- Infra/access/host/network changes -> update `20_infra/**/*`.
+- Schema/query/connection changes -> update `30_db/**/*`.
+- Process or policy changes -> update `40_patterns/**/*` and `50_runbooks/**/*`.
+- Profile/stack changes -> update `00_profile/{agent-context,developer-profile,tech-stack}.md`.
+- New or changed Cursor project skills -> update `60_skills/<owner>/<skill-name>.md` and link from related `10_projects/*/README`.
+
+## Quality Requirements
+- Keep YAML frontmatter with contextual `tags` in every maintained `.md`.
+- Add `last_verified: YYYY-MM-DD` and `change_source` on every meaningful edit.
+- Keep `## Stack` normalized: Python version, DB type/version or contour, Selenium usage (if any), and core frameworks.
+- Keep `## Project Location` with absolute repository path in every project README.
+- Add or maintain backlinks in `## Related` for project/infra/db/runbook traceability.
+- Use path-qualified wikilinks: `[[10_projects/<project>/runbook]]`, not bare filenames.
+- Forbid self-links in `## Related` sections.
+- Keep docs concise, actionable, and aligned with real runtime commands/paths.
+
+## Heading Conventions
+| Doc type | H1 format |
+|----------|-----------|
+| README | `# {project}` |
+| architecture | `# {project} — architecture` |
+| runbook | `# {project} — runbook` |
+| requirements | `# {project} — requirements` |
+| skill index | `# {owner} — skills` |
+| skill note | `# {skill-name}` |
+
+## Security and Data Hygiene
+- Remove deprecated credentials and stale access records when marked invalid by the owner.
+- When DB credentials are documented in `30_db`, keep secrets masked unless explicitly requested otherwise.
+- Do not store plaintext secrets in infra notes; reference [[20_infra/access-matrix]] instead.
+
+## SCM Policy
+- Document your canonical remote as `<GIT_REMOTE>`. That is the clone URL of *your* working repositories.
+- This template publishes via GitHub. Some teams use self-hosted Forgejo (or another internal host) as the canonical remote for operational repos. Do not treat the publisher GitHub remote as your team forge unless you are forking the template itself.
+- Before completing maintenance tasks, run `python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py` (category `scm` must be clean). Do not treat `verify_vault.py` alone as the verifier.
+
+## Completion Gate
+- Do not finish a task if relevant Obsidian docs are stale.
+- Before final response, verify affected docs were updated and internally consistent.
+- Run pre-completion checklist from [[50_runbooks/maintenance]].

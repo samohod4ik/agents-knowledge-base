@@ -1,0 +1,53 @@
+---
+description: Markdown standards for Obsidian vault operational docs
+globs: "**/*.md"
+alwaysApply: false
+---
+
+# Obsidian Vault Markdown Standards
+
+Apply these rules when editing markdown in this vault.
+
+## Document Structure
+- Keep a clear H1 title and concise section headers.
+- Include `## Related` with valid Obsidian backlinks for connected docs.
+- Prefer operational sections: Purpose, Run, Risks, Incident, Related.
+- For project README files, include mandatory sections: `Project Location`, `Stack`, and link to `requirements.md`.
+- For skill notes in `60_skills/`: `Purpose`, `Skill Location`, `Triggers`, `Related Projects`, `Related`.
+
+## Skills Registry
+- Local project skills only — not default Cursor/plugin skills.
+- Path: `60_skills/<owner>/<skill-name>.md`; owner = project slug or `workspace` for cross-project.
+- After creating `<SKILLS_ROOT>/<name>/SKILL.md`, register in Obsidian in the same turn (see [[50_runbooks/skills-for-cursor]]).
+
+## Metadata and Traceability
+- Preserve YAML frontmatter with closing `---`.
+- Required fields on meaningful edits: `tags`, `last_verified`, `change_source`.
+- Keep contextual `tags` up to date when document scope changes.
+- Avoid orphan notes; link project docs to infra/db/runbook context.
+
+## Linking Rules
+- Always use path-qualified wikilinks: `[[10_projects/example_library/runbook]]`.
+- Project `## Related` must include README + the other three core docs where applicable.
+- Forbid self-links in `## Related`.
+- Profile hub notes (`00_profile/*`) should link to all active `10_projects/*/README`.
+
+## Stack Normalization
+- Format: `Python: X.Y` → `DB: ...` → `Selenium: да/нет` → `Core libs: ...`
+- Document your Python contour split if more than one interpreter is in use.
+
+## Content Quality
+- Keep instructions executable (real commands and paths *for your* machine; until filled, use `<VAULT>`, `<SKILLS_ROOT>`, `<PROJECT_ROOT>`, `<GIT_REMOTE>`).
+- Remove stale or contradictory statements in the same edit.
+- Prefer short, actionable bullets over long prose.
+- Do not use placeholder citations like `[web:12]`.
+
+## SCM Naming Policy
+- Document your canonical remote as `<GIT_REMOTE>` in project README when a repo exists.
+- This template publishes via GitHub. Some teams use self-hosted Forgejo or another host for operational remotes. Do not copy a publisher URL into operational notes.
+
+## Related
+- [[60_skills/README]]
+- [[50_runbooks/maintenance]]
+- [[50_runbooks/obsidian-vault-audit]]
+- [[00_profile/tech-stack]]
