@@ -1,7 +1,7 @@
 ---
 tags: [infra, access, matrix, secrets]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
 # Access Matrix
 
@@ -31,3 +31,4 @@ change_source: task-4-vault-skeleton
 - [[20_infra/networks]]
 - [[20_infra/cursor-mcp]]
 - [[30_db/connections]]
+- [[10_projects/example_service/README]]

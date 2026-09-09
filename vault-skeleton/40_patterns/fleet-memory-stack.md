@@ -1,7 +1,7 @@
 ---
 tags: [pattern, memory, graphify, cursor, session-distill, vault-router]
 last_verified: 2026-09-09
-change_source: task-6-consistency-fix
+change_source: final-review-fixes
 ---
 # Fleet Memory Stack
 
@@ -34,7 +34,7 @@ Cursor не даёт встроенную память между агентам
 ## Related
 
 - [[50_runbooks/maintenance]]
-- [[40_patterns/rr77-cursor-rules]]
+- [[40_patterns/shared-cursor-rules]]
 - [[00_profile/agent-context]]
 - [[60_skills/README]]
 - [[70_researches/70_research_ops/70.03_RESEARCH-POLICY]]

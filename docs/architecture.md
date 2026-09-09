@@ -31,7 +31,7 @@
 5. По задаче:
    - skills: `60_skills/README.md`
    - память: `40_patterns/fleet-memory-stack.md`
-   - паттерн общих правил: `40_patterns/rr77-cursor-rules.md` (в скелете — обобщённая заметка, не командный канон)
+   - паттерн общих правил: `40_patterns/shared-cursor-rules.md` (в скелете — обобщённая заметка, не командный канон)
    - процесс: `50_runbooks/maintenance.md`
    - каталог MCP: `20_infra/cursor-mcp.md`
 

@@ -23,6 +23,8 @@ Read-only аудит vault `<VAULT>` и параллельная проверк�
 
 ## Doctor
 
+Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/projects-data-verification/` до запуска Doctor и остальных команд.
+
 ```powershell
 python <SKILLS_ROOT>/projects-data-verification/scripts/doctor.py
 ```

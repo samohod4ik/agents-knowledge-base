@@ -1,7 +1,7 @@
 ---
 tags: [runbook, maintenance, cursor, mcp]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
 # Maintenance
 
@@ -58,7 +58,7 @@ python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 - [[50_runbooks/obsidian-vault-audit]]
 - [[50_runbooks/skills-for-cursor]]
 - [[50_runbooks/skill-checklist]]
-- [[40_patterns/rr77-cursor-rules]]
+- [[40_patterns/shared-cursor-rules]]
 - [[40_patterns/git-conventions]]
 - [[20_infra/cursor-mcp]]
 - [[00_profile/agent-context]]

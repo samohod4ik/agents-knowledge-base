@@ -2,7 +2,7 @@
 tags: [skills, workspace, obsidian, audit, cursor]
 name: projects-data-verification
 last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+change_source: final-review-fixes
 ---
 # projects-data-verification
 
@@ -40,4 +40,4 @@ python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py 
 - [[50_runbooks/obsidian-vault-audit]]
 - [[50_runbooks/skill-checklist]]
 - [[50_runbooks/maintenance]]
-- [[40_patterns/rr77-cursor-rules]]
+- [[40_patterns/shared-cursor-rules]]

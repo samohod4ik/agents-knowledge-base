@@ -1,7 +1,7 @@
 ---
 tags: [db, connections, postgresql]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
 # DB Connections
 
@@ -47,3 +47,4 @@ postgresql+<driver>://<db_user>:<secret>@<HOST>:5432/<db_name>?options=-csearch_
 - [[30_db/important-queries/README]]
 - [[20_infra/access-matrix]]
 - [[20_infra/servers/README]]
+- [[10_projects/example_service/README]]

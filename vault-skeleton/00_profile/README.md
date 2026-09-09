@@ -1,7 +1,7 @@
 ---
 tags: [profile, index, entrypoint]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
 # Profile
 
@@ -14,8 +14,9 @@ change_source: task-4-vault-skeleton
 | [[00_profile/developer-profile]] | Роли, контуры, список Active Projects |
 | [[00_profile/tech-stack]] | Стек и контуры без чужих путей |
 | [[00_profile/agent-context]] | Правила работы агентов (English hub) |
-| [[agent-context]] | Краткий контекст на русском |
 | [[40_patterns/fleet-memory-stack]] | Память флота: AST + ADR + роутер |
+
+Корневая русскоязычная заметка `agent-context.md` остаётся отдельным файлом в корне vault.
 
 Реестр skills: `60_skills/README.md` (ставится вместе с brief).
 

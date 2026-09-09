@@ -21,6 +21,8 @@ description: >-
 
 ## Doctor
 
+Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/session-distill/` до запуска Doctor и остальных команд.
+
 ```powershell
 python <SKILLS_ROOT>/session-distill/scripts/doctor.py
 ```

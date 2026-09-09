@@ -4,7 +4,7 @@ tags:
   - index
   - entrypoint
 last_verified: 2026-09-09
-change_source: task-6-consistency-fix
+change_source: final-review-fixes
 ---
 # AgentsKnowledgeBase
 
@@ -15,9 +15,10 @@ change_source: task-6-consistency-fix
 ## Entry Points
 
 - [[00_profile/README]] — профиль оператора и хаб агента
-- [[agent-context]] — краткие русскоязычные правила
+- [[00_profile/agent-context]] — операционный хаб агента
+- `agent-context.md` — краткие русскоязычные правила (корневая заметка, отдельно от хаба)
 - [[40_patterns/fleet-memory-stack]] — три слоя памяти на диске
-- [[40_patterns/rr77-cursor-rules]] — паттерн общих Cursor rules
+- [[40_patterns/shared-cursor-rules]] — паттерн общих Cursor rules
 - [[20_infra/cursor-mcp]] — каталог MCP
 - [[50_runbooks/maintenance]] — протокол обновления
 - [[50_runbooks/obsidian-vault-audit]] — журнал аудита

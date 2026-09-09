@@ -16,6 +16,8 @@ description: >-
 
 ## Doctor
 
+Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/vault-router/` до запуска Doctor и остальных команд.
+
 ```powershell
 python <SKILLS_ROOT>/vault-router/scripts/doctor.py
 ```

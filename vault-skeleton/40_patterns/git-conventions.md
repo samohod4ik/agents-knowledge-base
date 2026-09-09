@@ -1,7 +1,7 @@
 ---
 tags: [patterns, git, conventions]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
 # Git Conventions
 
@@ -27,5 +27,5 @@ change_source: task-4-vault-skeleton
 
 - [[50_runbooks/maintenance]]
 - [[20_infra/cursor-mcp]]
-- [[40_patterns/rr77-cursor-rules]]
+- [[40_patterns/shared-cursor-rules]]
 - [[40_patterns/coding-style]]

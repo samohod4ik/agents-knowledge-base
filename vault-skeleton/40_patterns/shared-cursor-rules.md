@@ -1,11 +1,11 @@
 ---
 tags: [pattern, cursor, rules, shared-rules]
 last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+change_source: final-review-fixes
 ---
-# rr77 Cursor Rules
+# Shared Cursor Rules
 
-Это **паттерн общих правил**, не канон одной команды. Имя файла сохранено как ярлык паттерна. Подставьте свой `<team>` и свой `<GIT_REMOTE>`.
+Это **паттерн общих правил**, не канон одной команды. Подставьте свой `<team>` и свой `<GIT_REMOTE>`.
 
 ## Source of truth
 
