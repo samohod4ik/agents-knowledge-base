@@ -1,0 +1,11 @@
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/obsidian-local-rest-api/data.json
+**/.env
+**/*.pem
+**/id_rsa*
+**/secrets/
+vault-skeleton/70_researches/71_runs/71.01_raw_runs/**
+*.log
+Thumbs.db
+.DS_Store
