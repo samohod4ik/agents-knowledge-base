@@ -84,7 +84,7 @@ Optional Local REST MCP: [docs/cursor-integration.md](docs/cursor-integration.md
 | `vault-skeleton/60_skills/` | Vault-side registry notes for local skills |
 | `vault-skeleton/70_researches/` | Johnny Decimal research archive scaffold (no real `trun_*`) |
 | `skills/` | Four portable briefs: `projects-data-verification`, `vault-router`, `session-distill`, `save-research` |
-| `tests/` | CPU hygiene checks (no host paths, bilingual README, brief-only skills) |
+| `tests/` | CPU hygiene checks (no host paths, bilingual README, brief-only skills). Run: `python -m unittest discover -s tests -v` |
 
 License: [MIT](LICENSE), copyright 2026 `samohod4ik`.
 

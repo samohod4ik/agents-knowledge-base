@@ -33,4 +33,6 @@ CI/hygiene тест запрещает в text-файлах абсолютные
 python -m unittest discover -s tests -v
 ```
 
+Optional GitHub Actions workflow can wrap the same command when the publisher token has `workflow` scope; the suite itself does not depend on CI.
+
 См. также [SECURITY.md](../SECURITY.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [obsidian.md](obsidian.md).
