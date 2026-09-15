@@ -5,17 +5,18 @@ change_source: task-6-cursor-rules-skills
 ---
 # Cursor Skills
 
-Реестр **локальных project skills** (не дефолтные Cursor/plugin skills). Каждый skill — регламент для агента: когда вызывать, doctor, workflow, fallback.
+Реестр **локальных project skills** (не дефолтные Cursor/plugin skills). Каждый skill — регламент: когда / не когда, workflow на диске, fallback, успех.
 
-Источник brief в этом шаблоне — каталог `skills/` корня репозитория. После установки копия живёт в `<SKILLS_ROOT>/<skill-name>/SKILL.md`.
+Источник brief в этом шаблоне — каталог `skills/` корня репозитория. После установки копия живёт в `<SKILLS_ROOT>/<skill-name>/SKILL.md`. Скрипты в публичном дереве не обязательны.
 
-## Как создавать новый skill
-1. Взять brief из `skills/<skill-name>/` этого репозитория или создать `<SKILLS_ROOT>/<skill-name>/SKILL.md`.
-2. Пройти [[50_runbooks/skill-checklist]].
-3. **Обязательно** добавить заметку в `60_skills/<owner>/<skill-name>.md` по шаблону существующих.
-4. Обновить `Related` в README связанных проектов (`10_projects/*`).
+## Create / update / archive / verify
 
-Не публикуйте в шаблоне skills с учётными данными или привязкой к одному внутреннему хосту (deploy на именованный хост, лабораторный SSH, генераторы орг-отчётов).
+- **Create:** brief → `SKILL.md` в `<SKILLS_ROOT>` → заметка `60_skills/<owner>/<skill-name>.md` → строка в этой таблице → Related в проектах.
+- **Update:** правьте brief и vault-указатель в том же ходе; докажите discovery вызовом.
+- **Archive:** снимите из Active registry, оставьте forward-link; не оставляйте триггеры на мёртвый skill.
+- **Verify:** [[50_runbooks/skill-checklist]]; файл на диске ≠ работает.
+
+Не публикуйте в шаблоне skills с учётными данными или привязкой к одному внутреннему хосту.
 
 ## Реестр по владельцу
 
@@ -26,7 +27,7 @@ change_source: task-6-cursor-rules-skills
 Только эти четыре brief входят в шаблон. Owner — slug проекта или `workspace`.
 
 ## Policy
-- Источник истины поведения — `SKILL.md` в `skills/<skill-name>/` (или установленная копия в `<SKILLS_ROOT>`). Obsidian — operational index + связи.
+- Источник истины поведения — `SKILL.md` (brief). Obsidian — operational index + связи.
 - Не дублировать полный текст skill в vault; хранить purpose, location, triggers, related projects.
 - При изменении skill обновлять заметку в `60_skills/` в том же ходе.
 - Personal skills регистрируйте в vault только если это operational skill команды и в тексте нет секретов.

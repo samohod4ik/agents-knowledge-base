@@ -7,54 +7,32 @@ description: >-
   60_skills, skill-checklist.
 ---
 
-# Projects Data Verification
+# projects-data-verification
 
-## Назначение
+Установка: `<SKILLS_ROOT>/projects-data-verification`.
 
-Read-only аудит vault `<VAULT>` и параллельная проверка локальных проектов: карточки, общие Cursor rules, `AGENTS.md`, реестр skills, SCM относительно вашего `<GIT_REMOTE>`.
+Read-only аудит vault `<VAULT>`: карточки проектов, Cursor rules, реестр skills, формулировки SCM относительно вашего `<GIT_REMOTE>`. Публичный шаблон везёт **только** этот brief. Локальные `scripts/` — опциональная собственность оператора; без них выполняйте проверки по файлам.
 
-Скрипты только читают и пишут JSON-отчёт. Они не правят vault, rules, hooks и код проектов. Подтверждённые правки docs — отдельный запрос по протоколу сопровождения, не режим этого skill.
+**Не используй**, когда нужно только обновить один project README после code change, или пользователь просит не трогать Obsidian и не проверять docs.
 
-Покрывает бывший контур `obsidian-vault-verification`. Старые триггеры (`проверка Obsidian`, `obsidian-vault-audit`) остаются валидными.
+## Workflow
 
-**Не используй**, когда:
-- нужно только обновить один project README после code change;
-- пользователь просит не трогать Obsidian и не проверять docs.
+1. Открой `<VAULT>/README.md` и список Active Projects.
+2. Для каждого активного slug проверь квартет: `README`, `architecture`, `runbook`, `requirements` (+ `decisions.md`, если есть).
+3. Frontmatter: закрывающий `---`, `tags`, `last_verified`, `change_source`.
+4. Wikilink только с путём; нет self-link в `## Related`.
+5. `## Project Location` и remote в заметках совпадают с *вашим* `<GIT_REMOTE>` / диском — не с remote издателя шаблона.
+6. Реестр: каждый локальный skill имеет `60_skills/<owner>/<skill-name>.md` и строку в `60_skills/README.md`.
+7. Секреты: в `20_infra` / `30_db` только маски или `secret_ref`.
+8. Запиши findings в `50_runbooks/obsidian-vault-audit.md` (дата, gaps, что закрыто). Не автофикси docs без явной просьбы.
 
-## Doctor
+## Запреты
 
-Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/projects-data-verification/` до запуска Doctor и остальных команд.
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/doctor.py
-```
-
-Doctor падает, если нет скрипта скилла, корня `<VAULT>` / workspace или конфига инвентаря проектов.
-
-## Run
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py `
-  --output <SKILLS_ROOT>/projects-data-verification/cache/verify_report.json
-```
-
-Не подменяйте этот верификатор одиночным `verify_vault.py`. Cache — артефакт свежего прогона, не источник истины.
-
-Exit code `1` при error-level findings. Warnings не роняют `ok`. Runtime probes без evidence получают статус `not_tested` и не считаются regression.
-
-## Что проверяет
-
-- Hub, квартет карточек, frontmatter, tags, Related, self-link.
-- Active project ↔ путь на диске ↔ slug vault ↔ ваш `<GIT_REMOTE>`.
-- Реестр skills: полнота индекса, папка owner, все Skill Location, обязательный `name:`.
-- Согласованность общих Cursor rules (frontmatter/хеш канона команды), без печати секретов.
-
-## Fallback
-
-- Нет скрипта — остановись и скажи, что brief не установлен в `<SKILLS_ROOT>`.
-- Нет MCP Obsidian — читай `<VAULT>` с диска; отчёт всё равно пишет скрипт.
-- Нет конфига инвентаря — не выдумывай список проектов.
+- Автоисправление vault «заодно»
+- Выдумывать список проектов, если Active Projects пуст
+- Требовать отсутствующий `scripts/doctor.py` как единственный путь успеха
+- Печатать секреты в отчёт
 
 ## Успех
 
-`summary.errors = 0`, включая категорию `scm`. JSON-отчёт существует. Скрипт не менял vault и docs.
+Нет error-level gaps по применимым пунктам чеклиста в [docs/cursor-integration.md](../../docs/cursor-integration.md#pre-completion-checklist), либо gaps явно записаны в audit-журнале. Vault и rules skillом не менялись.

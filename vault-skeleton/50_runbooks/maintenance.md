@@ -43,15 +43,12 @@ change_source: final-review-fixes
 - [ ] Секреты замаскированы. Инфра ссылается на [[20_infra/access-matrix]] (`***` или `secret_ref`).
 - [ ] Хаб профиля совпадает с Active Projects: [[00_profile/tech-stack]], [[00_profile/developer-profile]].
 - [ ] Новый skill зарегистрирован в `60_skills/README.md`.
-- [ ] Опционально: верификатор ниже — `summary.errors = 0`, включая категорию `scm`.
+- [ ] Skill, если ставили: реально вызван агентом (не только скопирован файл).
+- [ ] Опционально: если есть локальный verify-скрипт — `summary.errors = 0`, включая `scm`. Иначе ручной проход пунктов выше + [[50_runbooks/obsidian-vault-audit]].
 
 ## SCM Validation
 
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
-```
-
-Ожидайте `summary.errors = 0`, включая категорию `scm`. Верификатор — только аудит, без автоисправления.
+Публичный шаблон не требует скриптов. Проверьте, что remote в карточках = ваш `<GIT_REMOTE>`, не remote издателя. Локальный verify — опционально.
 
 ## Related
 
