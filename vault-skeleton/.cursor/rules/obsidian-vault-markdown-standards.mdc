@@ -44,7 +44,7 @@ Apply these rules when editing markdown in this vault.
 
 ## SCM Naming Policy
 - Document your canonical remote as `<GIT_REMOTE>` in project README when a repo exists.
-- This template publishes via GitHub. Some teams use self-hosted Forgejo or another host for operational remotes. Do not copy a publisher URL into operational notes.
+- This template publishes via GitHub. Point operational notes at *your* team git host. Do not copy a publisher URL into operational notes.
 
 ## Related
 - [[60_skills/README]]

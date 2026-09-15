@@ -1,10 +1,15 @@
 ---
+id: template-vault-readme
+kind: note
+status: example
+date: 2026-09-16
 tags:
   - vault
   - index
   - entrypoint
-last_verified: 2026-09-09
-change_source: final-review-fixes
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # AgentsKnowledgeBase
 

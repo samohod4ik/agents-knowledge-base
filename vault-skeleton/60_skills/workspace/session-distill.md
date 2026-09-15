@@ -1,8 +1,10 @@
 ---
 tags: [skills, workspace, memory, decisions, cursor]
 name: session-distill
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+status: example
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # session-distill
 
@@ -12,8 +14,7 @@ change_source: task-6-cursor-rules-skills
 ## Skill Location
 - Brief шаблона: `skills/session-distill/SKILL.md`
 - Установка: `<SKILLS_ROOT>/session-distill/SKILL.md`
-- Scripts: `scripts/doctor.py`
-- Template: `assets/decisions-template.md`
+- Scripts / assets: опционально у оператора; в публичном дереве отсутствуют
 
 ## Triggers
 distill, decisions.md, ADR, session-end, память сессии, workaround, do-not-touch, перед commit после смыслового изменения.
@@ -24,10 +25,8 @@ distill, decisions.md, ADR, session-end, память сессии, workaround, 
 - [[10_projects/example_library/decisions]]
 - [[10_projects/example_service/decisions]]
 
-## Doctor
-```powershell
-python <SKILLS_ROOT>/session-distill/scripts/doctor.py
-```
+## Run
+Определите slug → правьте `decisions.md` по brief. MCP Obsidian предпочтителен; иначе диск.
 
 ## Related
 - [[40_patterns/fleet-memory-stack]]

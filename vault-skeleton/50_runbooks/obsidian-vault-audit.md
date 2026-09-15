@@ -1,22 +1,19 @@
 ---
 tags: [runbook, audit, vault, maintenance]
-last_verified: 2026-09-09
-change_source: task-4-vault-skeleton
+status: example
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # Obsidian Vault Audit
 
-Журнал проходов аудита. Верификатор `projects-data-verification` — только аудит: нет флага автоисправления.
+Журнал проходов аудита. Skill `projects-data-verification` — только аудит: нет автоисправления.
 
 ## Как проводить pass
 
-1. Убедитесь, что brief и скрипты стоят в `<SKILLS_ROOT>/projects-data-verification/`.
-2. Запустите:
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
-```
-
-3. Запишите дату, команду, `summary.errors` / warnings и оставшиеся gaps.
+1. Установите brief `projects-data-verification` в `<SKILLS_ROOT>/` (или следуйте его workflow вручную).
+2. Пройдите Active Projects, frontmatter, path-wikilinks, реестр skills, маски секретов, `<GIT_REMOTE>`.
+3. Запишите дату, метод (`manual` или имя локального скрипта), errors / warnings и оставшиеся gaps.
 4. Не переносите сюда чужие SHA, внутренние хосты и исключения исходного vault.
 
 ## Pass template
@@ -24,7 +21,7 @@ python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 | Поле | Значение |
 |------|----------|
 | date | `YYYY-MM-DD` |
-| command | `verify_projects_data.py` |
+| method | `manual` / optional local script |
 | errors | `0` (цель, включая `scm`) |
 | warnings | список или «нет» |
 | gaps | что осталось сознательно |

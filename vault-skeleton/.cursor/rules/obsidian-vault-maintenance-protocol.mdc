@@ -48,8 +48,8 @@ Apply this protocol whenever code, infrastructure, database, or operations conte
 
 ## SCM Policy
 - Document your canonical remote as `<GIT_REMOTE>`. That is the clone URL of *your* working repositories.
-- This template publishes via GitHub. Some teams use self-hosted Forgejo (or another internal host) as the canonical remote for operational repos. Do not treat the publisher GitHub remote as your team forge unless you are forking the template itself.
-- Before completing maintenance tasks, run `python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py` (category `scm` must be clean). Do not treat `verify_vault.py` alone as the verifier.
+- This template publishes via GitHub. Your team git host may differ. Do not treat the publisher GitHub remote as your team forge unless you are forking the template itself.
+- Before completing maintenance tasks, run the pre-completion checklist in [[50_runbooks/maintenance]] (and optionally a local verify script if you maintain one). Public template does not require unpublished scripts.
 
 ## Completion Gate
 - Do not finish a task if relevant Obsidian docs are stale.

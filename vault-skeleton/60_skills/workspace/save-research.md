@@ -1,8 +1,10 @@
 ---
 tags: [skills, workspace, research, cursor]
 name: save-research
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+status: example
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # save-research
 
@@ -13,7 +15,7 @@ change_source: task-6-cursor-rules-skills
 - Brief шаблона: `skills/save-research/SKILL.md`
 - Установка: `<SKILLS_ROOT>/save-research/SKILL.md`
 - Vault: эта заметка — указатель, не третья реализация
-- Scripts: `scripts/doctor.py`, `scripts/preflight.py`, `scripts/save_one.py`, `scripts/ingest_from_chats.py`
+- Scripts: опционально у оператора; в публичном дереве отсутствуют
 
 ## Triggers
 parallel deep research, `trun_*`, sweep research inbox, save-research
@@ -22,17 +24,8 @@ parallel deep research, `trun_*`, sweep research inbox, save-research
 - [[10_projects/example_library/README]]
 - [[10_projects/example_service/README]]
 
-## Doctor
-```powershell
-python <SKILLS_ROOT>/save-research/scripts/doctor.py
-```
-
 ## Run
-```powershell
-python <SKILLS_ROOT>/save-research/scripts/save_one.py run --scope <scope> --question "..."
-python <SKILLS_ROOT>/save-research/scripts/ingest_from_chats.py --sweep-only
-python <SKILLS_ROOT>/save-research/scripts/save_one.py sync-inbox
-```
+Preflight по registry/policy → запуск провайдера только через этот skill → запись в `71_runs/` + обновление registry. См. brief.
 
 ## Related
 - [[70_researches/70_research_ops/70.01_INDEX]]

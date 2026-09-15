@@ -1,8 +1,10 @@
 ---
 tags: [skills, workspace, vault, cursor, multi-root]
 name: vault-router
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+status: example
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # vault-router
 
@@ -12,7 +14,7 @@ change_source: task-6-cursor-rules-skills
 ## Skill Location
 - Brief шаблона: `skills/vault-router/SKILL.md`
 - Установка: `<SKILLS_ROOT>/vault-router/SKILL.md`
-- Scripts: `scripts/doctor.py`, `scripts/resolve_project.py`
+- Scripts: опционально у оператора; в публичном дереве отсутствуют
 
 ## Triggers
 move_agent_to_root, vault-router, Active Projects, какой проект открыть, мультирепо в сайдбаре.
@@ -21,15 +23,8 @@ move_agent_to_root, vault-router, Active Projects, какой проект от�
 - [[10_projects/example_library/README]]
 - [[10_projects/example_service/README]]
 
-## Doctor
-```powershell
-python <SKILLS_ROOT>/vault-router/scripts/doctor.py
-```
-
 ## Run
-```powershell
-python <SKILLS_ROOT>/vault-router/scripts/resolve_project.py --name <slug>
-```
+Прочитайте Active Projects и карточку slug, затем один `move_agent_to_root` при необходимости. См. brief.
 
 ## Related
 - [[40_patterns/fleet-memory-stack]]

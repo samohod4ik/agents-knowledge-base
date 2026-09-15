@@ -20,6 +20,13 @@ change_source: final-review-fixes
 
 Реестр skills: `60_skills/README.md` (ставится вместе с brief).
 
+## Create / update / archive / verify
+
+- **Create:** заполните developer-profile и tech-stack своими ролями/стеком; свяжите Active Projects.
+- **Update:** после смены стека или списка проектов обновите хаб и Related в том же ходе.
+- **Archive:** устаревшие роли/контуры — в `90_archive/` с `superseded_by`, не молча удалять.
+- **Verify:** path-wikilinks живы; нет чужих абсолютных дисков; `<GIT_REMOTE>` ваш.
+
 ## Python Contours
 
 Заполните своими версиями. Пример формы, не чужие slug:
