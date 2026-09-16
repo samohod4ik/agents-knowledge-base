@@ -82,7 +82,19 @@ class HygieneTests(unittest.TestCase):
         self.assertIn("<VAULT>", text)
         self.assertIn("<SKILLS_ROOT>", text)
         self.assertIn("<GIT_REMOTE>", text)
-        self.assertNotIn("does include a local RAG", text.lower())
+
+    def test_banned_product_words_absent(self):
+        hits = []
+        # Adjacent literals concatenate at runtime; source avoids contiguous banned spellings.
+        needles = ("R" "AG", "Tele" "gram", "tele" "gram")
+        for path in iter_text_files():
+            if path.name == "test_docs_hygiene.py":
+                continue
+            text = path.read_text(encoding="utf-8", errors="replace")
+            for token in needles:
+                if token in text:
+                    hits.append("%s: %s" % (path.relative_to(ROOT), token))
+        self.assertEqual(hits, [])
 
     def test_required_public_docs_and_skills(self):
         required = [

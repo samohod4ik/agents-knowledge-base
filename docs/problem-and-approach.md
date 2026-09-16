@@ -69,6 +69,6 @@ Cursor — писатель и читатель. Obsidian — граф, повс
 
 ## Что поставляет этот шаблон
 
-Концептуальные документы в `docs/`, анонимизированный `vault-skeleton/`, две примерные карточки проектов (`example_library`, `example_service`), адаптированные правила Cursor и четыре brief vault-ops skills. Внутренние runbook, живые хосты, учётные данные и локальный RAG **не** поставляются.
+Концептуальные документы в `docs/`, анонимизированный `vault-skeleton/`, две примерные карточки проектов (`example_library`, `example_service`), адаптированные правила Cursor и четыре brief vault-ops skills. Внутренние runbook, живые хосты и учётные данные **не** поставляются.
 
 Командный git-хостинг — ваш (`<GIT_REMOTE>`): GitHub, self-hosted forge или иной. Этот репозиторий — публичный канал распространения на GitHub. Это разные remote; см. [cursor-integration.md](cursor-integration.md).

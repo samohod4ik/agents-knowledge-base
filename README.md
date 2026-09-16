@@ -14,7 +14,7 @@ Operational notes in `docs/` and later vault files are **Russian-primary**. This
 
 A note dump looks complete and still forces the next chat to guess. An operational knowledge base stores commands, absolute project paths, stack facts, and path-qualified links that an agent can act on in one or two searches.
 
-This template publishes the current numbered vault (`00_`–`70_` plus `90_`), not a trimmed older tree. It does **not** ship anyone's live `10_projects` cards, infra passwords, or research run packets. It does **not** include a local RAG service or Telegram bot.
+This template publishes the current numbered vault (`00_`–`70_` plus `90_`), not a trimmed older tree. It does **not** ship anyone's live `10_projects` cards, infra passwords, or research run packets.
 
 ### Audience
 
@@ -96,7 +96,7 @@ License: [MIT](LICENSE), copyright 2026 `samohod4ik`.
 
 Свалка заметок выглядит полной, но следующий чат всё равно угадывает. Операционная база знаний хранит команды, абсолютные пути проектов, факты стека и wikilink с путём, по которым агент действует за один-два поиска.
 
-Этот шаблон публикует текущее нумерованное дерево (`00_`–`70_` плюс `90_`), а не урезанное старое. Живые карточки `10_projects`, пароли инфры и пакеты research-прогонов **не** входят. Локальный RAG и Telegram-бот **не** входят.
+Этот шаблон публикует текущее нумерованное дерево (`00_`–`70_` плюс `90_`), а не урезанное старое. Живые карточки `10_projects`, пароли инфры и пакеты research-прогонов **не** входят.
 
 ### Аудитория
 

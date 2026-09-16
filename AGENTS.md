@@ -16,7 +16,7 @@ Use only: `<VAULT>`, `<SKILLS_ROOT>`, `<PROJECT_ROOT>`, `<GIT_REMOTE>`, `<PORT>`
 
 ## Do
 
-1. Keep docs honest: Obsidian + Cursor operational vault template — no implied RAG/Telegram.
+1. Keep docs honest: this repo is an Obsidian + Cursor operational vault template only.
 2. Same-turn updates: if you change a process, update README / docs / registry notes together.
 3. Skills are brief-only in git; local scripts are optional and operator-owned.
 4. Run hygiene tests under `tests/` before claiming the tree is public-safe.
