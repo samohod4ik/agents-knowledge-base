@@ -66,9 +66,12 @@ Cursor — писатель и читатель. Obsidian — граф, повс
 - Graphify как semantic memory, LLM-метки или `export obsidian` в `10_projects/` (`626af52f`).
 - Папки плюс длинное правило `alwaysApply` как единственный research-процесс (`0aac62bb`).
 - Считать research `poll` открытием (`0aac62bb`).
+- **Plan Mode Cursor для disk-research.** Plan Mode не пишет диск. Phase 0+1 (inbox + файлы плана) — Agent Mode.
+- **Клон этого шаблона внутрь того же `projects_root`**, что и рабочие git-дети. `inventory` считает каждый прямой git-ребёнок проектом. Альтернатива: `excluded` с reason `public`. Не удалять чужие checkout из шаблона.
+- **H2 `## Related Research` (и любой другой H2 с префиксом Related).** Related — точная строка `## Related`. Prefix-парсер верификатора иначе съест блок.
 
 ## Что поставляет этот шаблон
 
-Концептуальные документы в `docs/`, анонимизированный `vault-skeleton/`, две примерные карточки проектов (`example_library`, `example_service`), адаптированные правила Cursor и четыре brief vault-ops skills. Внутренние runbook, живые хосты и учётные данные не поставляются.
+Концептуальные документы в `docs/`, анонимизированный `vault-skeleton/`, две примерные карточки проектов (`example_library`, `example_service`), пример стека `20_infra/example_stack`, адаптированные правила Cursor и четыре brief vault-ops skills. Внутренние runbook, живые хосты и учётные данные не поставляются.
 
-Командный git-хостинг может быть self-hosted Forgejo. Этот репозиторий — публичный канал распространения на GitHub. Это разные remote; см. [cursor-integration.md](cursor-integration.md).
+Этот репозиторий — канал издателя на GitHub. Канон рабочих репо — ваш `<GIT_REMOTE>`; см. [cursor-integration.md](cursor-integration.md).

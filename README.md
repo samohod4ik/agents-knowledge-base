@@ -2,7 +2,7 @@
 
 Public MIT template for an **operational** Obsidian vault paired with Cursor. A third person can rebuild the same agent-readable map without anyone's secrets, hosts, or live runbooks.
 
-GitHub is the **template distribution** channel. Your team's git host (self-hosted Forgejo or otherwise) stays the canonical remote for *your* working repos. Point `<GIT_REMOTE>` at your host, not at the publisher.
+GitHub is the **template distribution** channel. Your team's git host stays the canonical remote for *your* working repos (`<GIT_REMOTE>`, any host). Point `<GIT_REMOTE>` at your host, not at the publisher.
 
 Operational notes in `docs/` and later vault files are **Russian-primary**. This root README is bilingual (English + Russian) so a stranger can bootstrap in five minutes.
 
@@ -37,6 +37,8 @@ git clone git@github.com:samohod4ik/agents-knowledge-base.git
 
 Public GitHub only. No internal git host is required.
 
+Do **not** clone this template inside the same `projects_root` as your working git children. A verifier `inventory` check treats every direct git child of `projects_root` as a managed project. If the template already sits there, add its directory name to your inventory `excluded` list with reason `public`. This template does not delete anyone else's checkouts.
+
 ### Five-minute bootstrap
 
 All steps are local disk plus public GitHub. Optional REST stays on `127.0.0.1`.
@@ -52,10 +54,14 @@ All steps are local disk plus public GitHub. Optional REST stays on `127.0.0.1`.
 
 ### Conceptual docs (this commit)
 
-- [Problem and approach](docs/problem-and-approach.md) — operational KB vs note dump; Obsidian + Cursor; design evolution; rejected Mem0 / flat research / chat-dump / PARA-as-folders.
-- [Architecture](docs/architecture.md) — numbered `00_`–`70_` + `90_` map; agent read-first order; frontmatter / H1 / wikilink rules; vault vs project git.
+- [Problem and approach](docs/problem-and-approach.md) — operational KB vs note dump; Obsidian + Cursor; design evolution; rejected Mem0 / flat research / chat-dump / PARA-as-folders / Plan Mode for disk research.
+- [Architecture](docs/architecture.md) — numbered `00_`–`70_` + `90_` map; project quartet vs infra stack; agent read-first order; frontmatter / H1 / wikilink rules; vault vs project git.
 - [Killer features](docs/killer-features.md) — maintenance protocol, markdown standards, skills registry, research archive, fleet-memory stack, audit.
-- [Cursor integration](docs/cursor-integration.md) — rules copy, four skill briefs, Local REST without a real key, pre-completion checklist, GitHub template vs team git host.
+- [Cursor integration](docs/cursor-integration.md) — rules copy, four skill briefs, Plan Mode vs Agent Mode, Local REST without a real key, `scm` gate.
+- [Layers](docs/layers.md) — L1 user / L2 host / L3 vault / L4 team-canon; what sync may copy.
+- [Verify contract](docs/verify-contract.md) — `scm` vs `errors = 0`, inventory, quartet vs infra, two audit snapshots.
+- [Graphify](docs/graphify.md) — AST graph in the *project repo*, `--code-only`, not a fifth public skill.
+- [Contributing](CONTRIBUTING.md) — PR rules for this GitHub repo: brief-only, no `[web:N]`, no secrets.
 
 ### Later template paths
 
@@ -67,8 +73,9 @@ These layout paths belong to later artifacts of the same repository. They are li
 | `vault-skeleton/README.md` | Vault map and Active Projects list |
 | `vault-skeleton/agent-context.md` | Short agent working rules |
 | `vault-skeleton/00_profile/` … `90_archive/` | Numbered ops sections with placeholders (no `80_*`) |
-| `vault-skeleton/10_projects/example_library/` | Example library project card |
-| `vault-skeleton/10_projects/example_service/` | Example service project card |
+| `vault-skeleton/10_projects/example_library/` | Example library project card (quartet) |
+| `vault-skeleton/10_projects/example_service/` | Example service project card (quartet) |
+| `vault-skeleton/20_infra/example_stack/` | Example stack card (no quartet) |
 | `vault-skeleton/.cursor/rules/` | Two vault Cursor rules (`.mdc`) |
 | `vault-skeleton/60_skills/` | Vault-side registry notes for local skills |
 | `vault-skeleton/70_researches/` | Johnny Decimal research archive scaffold (no real `trun_*`) |
@@ -107,6 +114,8 @@ git clone git@github.com:samohod4ik/agents-knowledge-base.git
 
 Только публичный GitHub. Внутренний git-хост не требуется.
 
+**Не клонируйте** этот репозиторий внутрь того же `projects_root`, что и рабочие git-дети: проверка `inventory` считает каждый прямой git-ребёнок управляемым проектом. Если шаблон уже лежит там — добавьте имя каталога в `excluded` манифеста с причиной `public`. Шаблон не удаляет чужие checkout.
+
 ### Bootstrap за пять минут
 
 Все шаги — локальный диск и публичный GitHub. Опциональный REST только на `127.0.0.1`.
@@ -122,10 +131,14 @@ git clone git@github.com:samohod4ik/agents-knowledge-base.git
 
 ### Концептуальные документы (этот коммит)
 
-- [Проблема и подход](docs/problem-and-approach.md) — операционный KB vs свалка; Obsidian + Cursor; эволюция дизайна; отказ от Mem0 / плоского research / дампа чатов / PARA как дерева папок.
-- [Архитектура](docs/architecture.md) — карта `00_`–`70_` + `90_`; порядок чтения агентом; frontmatter / H1 / wikilink; vault vs git проектов.
+- [Проблема и подход](docs/problem-and-approach.md) — операционный KB vs свалка; Obsidian + Cursor; эволюция дизайна; отказ от Mem0 / плоского research / дампа чатов / PARA / Plan Mode для disk-research.
+- [Архитектура](docs/architecture.md) — карта `00_`–`70_` + `90_`; квартет vs стек; порядок чтения агентом; frontmatter / H1 / wikilink; vault vs git проектов.
 - [Ключевые возможности](docs/killer-features.md) — протокол сопровождения, стандарты markdown, реестр skills, архив исследований, стек памяти флота, аудит.
-- [Интеграция с Cursor](docs/cursor-integration.md) — копирование правил, четыре skill brief, Local REST без настоящего ключа, чеклист перед завершением, GitHub-шаблон vs командный git-хост.
+- [Интеграция с Cursor](docs/cursor-integration.md) — копирование правил, четыре skill brief, Plan Mode vs Agent Mode, Local REST без настоящего ключа, гейт `scm`.
+- [Слои](docs/layers.md) — L1 user / L2 host / L3 vault / L4 team-canon; что sync может копировать.
+- [Контракт verify](docs/verify-contract.md) — `scm` vs `errors = 0`, inventory, квартет vs инфра, два снимка журнала.
+- [Graphify](docs/graphify.md) — AST-граф в *репозитории проекта*, `--code-only`, не пятый публичный skill.
+- [Contributing](CONTRIBUTING.md) — правила PR в этот GitHub-репо: brief-only, без `[web:N]`, без секретов.
 
 ### Поздние пути шаблона
 
@@ -137,8 +150,9 @@ git clone git@github.com:samohod4ik/agents-knowledge-base.git
 | `vault-skeleton/README.md` | Карта vault и список Active Projects |
 | `vault-skeleton/agent-context.md` | Короткие правила работы агента |
 | `vault-skeleton/00_profile/` … `90_archive/` | Нумерованные ops-разделы с плейсхолдерами (без `80_*`) |
-| `vault-skeleton/10_projects/example_library/` | Пример карточки library-проекта |
-| `vault-skeleton/10_projects/example_service/` | Пример карточки service-проекта |
+| `vault-skeleton/10_projects/example_library/` | Пример карточки library-проекта (квартет) |
+| `vault-skeleton/10_projects/example_service/` | Пример карточки service-проекта (квартет) |
+| `vault-skeleton/20_infra/example_stack/` | Пример карточки стека (без квартета) |
 | `vault-skeleton/.cursor/rules/` | Два vault-правила Cursor (`.mdc`) |
 | `vault-skeleton/60_skills/` | Заметки-реестр локальных skills на стороне vault |
 | `vault-skeleton/70_researches/` | Каркас архива исследований Johnny Decimal (без живых `trun_*`) |
