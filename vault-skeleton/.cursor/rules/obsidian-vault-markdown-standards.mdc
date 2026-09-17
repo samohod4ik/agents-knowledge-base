@@ -43,6 +43,7 @@ Apply these rules when editing markdown in this vault.
 - Remove stale or contradictory statements in the same edit.
 - Prefer short, actionable bullets over long prose.
 - Do not use placeholder citations like `[web:12]`.
+- Do not break a markdown table by inserting a paragraph inside a row (anti-pattern: a sentence between `| Skill |` cells). Put commentary before or after the table.
 
 ## Skill note skeleton
 Required shape for `60_skills/<owner>/<skill-name>.md` (orphans fail `skills_registry` / `skills_index`):
