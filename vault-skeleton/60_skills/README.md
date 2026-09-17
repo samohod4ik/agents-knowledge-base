@@ -1,7 +1,7 @@
 ---
 tags: [skills, index, cursor, entrypoint]
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # Cursor Skills
 
@@ -9,11 +9,22 @@ change_source: task-6-cursor-rules-skills
 
 Источник brief в этом шаблоне — каталог `skills/` корня репозитория. После установки копия живёт в `<SKILLS_ROOT>/<skill-name>/SKILL.md`.
 
+## Лейны реестра
+
+| Лейн | Действие |
+|------|----------|
+| create | `SKILL.md` в `<SKILLS_ROOT>/<name>/` → заметка из [[60_skills/_templates/skill-note]] → строка в этом README → `## Cursor Skills` в README проекта |
+| update | Тот же ход: brief + заметка + индекс. `last_verified` / `change_source` |
+| archive | Убрать из индекса и `## Cursor Skills`. Заметку перенести в `90_archive/` или пометить `archived` |
+| verify | `name:` в frontmatter совпадает со stem файла; имя есть в этом README; нет orphan (`skills_registry` / `skills_index`) |
+
 ## Как создавать новый skill
 1. Взять brief из `skills/<skill-name>/` этого репозитория или создать `<SKILLS_ROOT>/<skill-name>/SKILL.md`.
 2. Пройти [[50_runbooks/skill-checklist]].
-3. **Обязательно** добавить заметку в `60_skills/<owner>/<skill-name>.md` по шаблону существующих.
-4. Обновить `Related` в README связанных проектов (`10_projects/*`).
+3. **Обязательно** добавить заметку в `60_skills/<owner>/<skill-name>.md` из [[60_skills/_templates/skill-note]] (`name:`, Triggers, один Location, без хостов).
+4. Обновить `## Cursor Skills` и точный `## Related` в README связанных проектов (`10_projects/*`).
+
+`## Run` в заметке vault — только если это контракт *установленных* скриптов, не копия чужого `SKILL.md`.
 
 Не публикуйте в шаблоне skills с учётными данными или привязкой к одному внутреннему хосту (deploy на именованный хост, лабораторный SSH, генераторы орг-отчётов).
 

@@ -1,7 +1,7 @@
 ---
 tags: [project, example_service, service, python, fastapi]
-last_verified: 2026-09-09
-change_source: task-5-example-projects
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # example_service
 
@@ -47,6 +47,15 @@ SQL — в `./sql/`. Проверочные запросы — [[30_db/important
 
 - Remote: `<GIT_REMOTE>/<org>/example_service.git`
 
+## Cursor Skills
+
+Локальный brief после установки (не в этом шаблоне как код сервиса):
+
+- `.cursor/skills/session-distill/SKILL.md` или `<SKILLS_ROOT>/session-distill/SKILL.md`
+- Указатель vault: [[60_skills/workspace/session-distill]]
+
+Стек, на котором крутится пример: [[20_infra/example_stack/README]] — это инфра, не четвёртая карточка квартета.
+
 ## Related
 
 - [[10_projects/example_service/architecture]]
@@ -54,6 +63,7 @@ SQL — в `./sql/`. Проверочные запросы — [[30_db/important
 - [[10_projects/example_service/requirements]]
 - [[10_projects/example_service/decisions]]
 - [[10_projects/example_library/README]]
+- [[20_infra/example_stack/README]]
 - [[00_profile/tech-stack]]
 - [[00_profile/developer-profile]]
 - [[20_infra/access-matrix]]
