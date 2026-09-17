@@ -1,7 +1,7 @@
 ---
 tags: [runbook, maintenance, cursor, mcp]
-last_verified: 2026-09-09
-change_source: final-review-fixes
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # Maintenance
 
@@ -43,7 +43,8 @@ change_source: final-review-fixes
 - [ ] Секреты замаскированы. Инфра ссылается на [[20_infra/access-matrix]] (`***` или `secret_ref`).
 - [ ] Хаб профиля совпадает с Active Projects: [[00_profile/tech-stack]], [[00_profile/developer-profile]].
 - [ ] Новый skill зарегистрирован в `60_skills/README.md`.
-- [ ] Опционально: верификатор ниже — `summary.errors = 0`, включая категорию `scm`.
+- [ ] AlwaysApply-стоп: категория `scm` чистая. Полный `errors = 0` — цель журнала аудита, не стоп этой задачи.
+- [ ] `## Related` — точная строка заголовка. Не `## Related Research` и не другой H2 с префиксом Related.
 
 ## SCM Validation
 
@@ -51,7 +52,7 @@ change_source: final-review-fixes
 python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 ```
 
-Ожидайте `summary.errors = 0`, включая категорию `scm`. Верификатор — только аудит, без автоисправления.
+Один верификатор: `verify_projects_data.py`. AlwaysApply-стоп — категория `scm` clean. `verify_vault.py` — модуль той же реализации, не второй продукт. Полный `errors = 0` пишите в журнал аудита; leftover чужих категорий задачу не валит. Верификатор — только аудит, без автоисправления. Cache JSON — не источник истины.
 
 ## Related
 
