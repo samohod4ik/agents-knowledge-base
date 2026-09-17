@@ -2,7 +2,7 @@
 
 Public MIT template for an **operational** Obsidian vault paired with Cursor. A third person can rebuild the same agent-readable map without anyone's secrets, hosts, or live runbooks.
 
-GitHub is the **template distribution** channel. Your team's git host stays the canonical remote for *your* working repos. Point `<GIT_REMOTE>` at your host, not at the publisher.
+GitHub is the **template distribution** channel. Your team's git host stays the canonical remote for *your* working repos (`<GIT_REMOTE>`, any host). Point `<GIT_REMOTE>` at your host, not at the publisher.
 
 Operational notes in `docs/` and later vault files are **Russian-primary**. This root README is bilingual (English + Russian) so a stranger can bootstrap in five minutes.
 
@@ -40,12 +40,14 @@ https://github.com/samohod4ik/agents-knowledge-base.git
 git clone https://github.com/samohod4ik/agents-knowledge-base.git
 ```
 
+Do **not** clone this template inside the same `projects_root` as your working git children. A verifier `inventory` check treats every direct git child of `projects_root` as a managed project. If the template already sits there, add its directory name to your inventory `excluded` list with reason `public`. This template does not delete anyone else's checkouts.
+
 3. **Copy `vault-skeleton/` outside the checkout** and open the copy in Obsidian (**Open folder as vault**). Do not treat the in-repo path as your only working vault.
 4. **Open the same folder in Cursor** so agents and Obsidian share one tree (`<VAULT>`).
 5. **Copy `.cursor/rules`** from `vault-skeleton/.cursor/rules/` into `<VAULT>/.cursor/rules/`. Reload Cursor so both Project Rules appear.
 6. **Install `skills/`** — copy each brief folder into `<SKILLS_ROOT>/<skill-name>/` so `SKILL.md` sits at that path. `<SKILLS_ROOT>` is your user skills directory or the project's `.cursor/skills/`. File-on-disk is not proof the agent discovers the skill — trigger it once.
 7. **Fill placeholders** — replace `<VAULT>`, `<SKILLS_ROOT>`, `<PROJECT_ROOT>`, and `<GIT_REMOTE>` with *your* machine and *your* git host.
-8. **Add the first real project card** under `10_projects/<your-slug>/` (README, architecture, runbook, requirements; add `decisions.md` when a durable why appears). Point Active Projects at that card. Template examples are only `example_library` and `example_service`.
+8. **Add the first real project card** under `10_projects/<your-slug>/` (README, architecture, runbook, requirements; add `decisions.md` when a durable why appears). Point Active Projects at that card. Template examples are only `example_library` and `example_service`. Stacks go under `20_infra/<stack>/` (see `example_stack`), not `10_projects/`.
 
 Optional Local REST MCP: [docs/cursor-integration.md](docs/cursor-integration.md).
 
@@ -67,6 +69,9 @@ Optional Local REST MCP: [docs/cursor-integration.md](docs/cursor-integration.md
 - [Architecture](docs/architecture.md)
 - [Killer features](docs/killer-features.md)
 - [Cursor integration](docs/cursor-integration.md)
+- [Layers](docs/layers.md)
+- [Verify contract](docs/verify-contract.md)
+- [Graphify](docs/graphify.md)
 - [Public-readiness audit](docs/repository-audit.md)
 - [Contributing](CONTRIBUTING.md), [security](SECURITY.md), [repo agent rules](AGENTS.md)
 
@@ -78,8 +83,9 @@ Optional Local REST MCP: [docs/cursor-integration.md](docs/cursor-integration.md
 | `vault-skeleton/README.md` | Vault map and Active Projects list |
 | `vault-skeleton/agent-context.md` | Short agent working rules |
 | `vault-skeleton/00_profile/` … `90_archive/` | Numbered ops sections with placeholders (no `80_*`) |
-| `vault-skeleton/10_projects/example_library/` | Example library project card |
-| `vault-skeleton/10_projects/example_service/` | Example service project card |
+| `vault-skeleton/10_projects/example_library/` | Example library project card (quartet) |
+| `vault-skeleton/10_projects/example_service/` | Example service project card (quartet) |
+| `vault-skeleton/20_infra/example_stack/` | Example stack card (no quartet) |
 | `vault-skeleton/.cursor/rules/` | Two vault Cursor rules (`.mdc`) |
 | `vault-skeleton/60_skills/` | Vault-side registry notes for local skills |
 | `vault-skeleton/70_researches/` | Johnny Decimal research archive scaffold (no real `trun_*`) |
@@ -116,12 +122,14 @@ License: [MIT](LICENSE), copyright 2026 `samohod4ik`.
 git clone https://github.com/samohod4ik/agents-knowledge-base.git
 ```
 
+**Не клонируйте** этот репозиторий внутрь того же `projects_root`, что и рабочие git-дети: проверка `inventory` считает каждый прямой git-ребёнок управляемым проектом. Если шаблон уже лежит там — добавьте имя каталога в `excluded` манифеста с причиной `public`. Шаблон не удаляет чужие checkout.
+
 3. **Скопируйте `vault-skeleton/` наружу** из клона и откройте копию в Obsidian (**Open folder as vault**).
 4. **Откройте ту же папку в Cursor** (`<VAULT>`).
 5. **Скопируйте `.cursor/rules`** из скелета в `<VAULT>/.cursor/rules/`. Перезагрузите Cursor.
 6. **Установите `skills/`** в `<SKILLS_ROOT>/<skill-name>/`. Файл на диске ≠ доказательство, что агент skill видит — вызовите его один раз.
 7. **Заполните плейсхолдеры** своими путями и своим `<GIT_REMOTE>`.
-8. **Добавьте первую карточку** в `10_projects/<your-slug>/` и укажите её в Active Projects.
+8. **Добавьте первую карточку** в `10_projects/<your-slug>/` и укажите её в Active Projects. Стеки — в `20_infra/<stack>/`, не в `10_projects/`.
 
 ### Контракт плейсхолдеров
 
@@ -141,6 +149,9 @@ git clone https://github.com/samohod4ik/agents-knowledge-base.git
 - [Архитектура](docs/architecture.md)
 - [Ключевые возможности](docs/killer-features.md)
 - [Интеграция с Cursor](docs/cursor-integration.md)
+- [Слои](docs/layers.md)
+- [Контракт verify](docs/verify-contract.md)
+- [Graphify](docs/graphify.md)
 - [Аудит готовности к public](docs/repository-audit.md)
 - [Contributing](CONTRIBUTING.md), [security](SECURITY.md), [правила агента репо](AGENTS.md)
 
@@ -149,6 +160,7 @@ git clone https://github.com/samohod4ik/agents-knowledge-base.git
 | Путь | Назначение |
 |------|------------|
 | `vault-skeleton/` | Анонимизированный нумерованный vault для копии в Obsidian |
+| `vault-skeleton/20_infra/example_stack/` | Пример карточки стека (без квартета) |
 | `skills/` | Четыре переносимых brief без обязательных скриптов |
 | `tests/` | CPU-проверки гигиены публичного дерева |
 

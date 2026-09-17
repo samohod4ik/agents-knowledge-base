@@ -8,8 +8,8 @@ tags:
   - index
   - entrypoint
 source_agent: public-template
-last_verified: 2026-09-16
-change_source: public-obsidian-polish
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # AgentsKnowledgeBase
 
@@ -29,15 +29,15 @@ change_source: public-obsidian-polish
 - [[50_runbooks/obsidian-vault-audit]] — журнал аудита
 - [[70_researches/70_research_ops/70.01_INDEX]] — индекс исследований
 
-Реестр локальных skills — [[60_skills/README]]. Brief шаблона лежат в `skills/` корня репозитория. Карточки проектов — в `10_projects/<slug>/`.
+Реестр локальных skills — [[60_skills/README]]. Brief шаблона лежат в `skills/` корня репозитория. Карточки **прикладных** репозиториев — в `10_projects/<slug>/` (квартет обязателен). Стек / compose / TDE-почва — `20_infra/<stack>/`, квартет не требовать. Пример стека: [[20_infra/example_stack/README]].
 
 ## Sections
 
 | Раздел | Назначение |
 |--------|------------|
 | `00_profile/` | Профиль, стек, English hub агента |
-| `10_projects/` | На slug: README, architecture, runbook, requirements, часто `decisions.md` |
-| `20_infra/` | Серверы, сети, access-matrix (маски), каталог MCP |
+| `10_projects/` | Прикладной git-репозиторий: квартет README / architecture / runbook / requirements, часто `decisions.md` |
+| `20_infra/` | Серверы, сети, access-matrix (маски), каталог MCP, **стеки** (`20_infra/<stack>/`) без квартета |
 | `30_db/` | Подключения с масками, схемы, важные запросы |
 | `40_patterns/` | Стиль кода, git, стек памяти, общие rules |
 | `50_runbooks/` | Сопровождение, аудит, гайды по skills |
@@ -49,10 +49,11 @@ change_source: public-obsidian-polish
 
 ## Active Projects
 
-- [[10_projects/example_library/README]] — общая Python-библиотека (пример карточки)
-- [[10_projects/example_service/README]] — HTTP/worker-сервис (пример карточки)
+- [[10_projects/example_library/README]] — общая Python-библиотека (пример карточки с квартетом)
+- [[10_projects/example_service/README]] — HTTP/worker-сервис (пример карточки с квартетом)
+- [[20_infra/example_stack/README]] — пример стека (не проект, квартет не нужен)
 
-Только эти два slug. Замените список своими карточками; чужие операционные runbook не копировать.
+Прикладные slug — только два example в `10_projects/`. Стек не добавляйте в Active Projects как четвёртый квартет. Замените список своими карточками; чужие операционные runbook не копировать.
 
 ## Archive
 
@@ -62,6 +63,7 @@ change_source: public-obsidian-polish
 
 - [[10_projects/example_library/README]]
 - [[10_projects/example_service/README]]
+- [[20_infra/example_stack/README]]
 - [[00_profile/tech-stack]]
 - [[00_profile/developer-profile]]
 - [[20_infra/cursor-mcp]]

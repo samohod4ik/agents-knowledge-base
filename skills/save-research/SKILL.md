@@ -7,6 +7,10 @@ description: >-
 
 # save-research
 
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. Локальные `scripts/` опциональны; не требуйте отсутствующий doctor как блокер.
+
+Источник истины — user/host `<SKILLS_ROOT>/save-research`. В пакет командных project-rules / team-canon **не копировать**.
+
 Установка: `<SKILLS_ROOT>/save-research`.
 Указатель vault: `<VAULT>/60_skills/workspace/save-research.md`.
 

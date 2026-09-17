@@ -1,7 +1,7 @@
 ---
 tags: [runbook, maintenance, cursor, mcp]
-last_verified: 2026-09-09
-change_source: final-review-fixes
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # Maintenance
 
@@ -44,11 +44,14 @@ change_source: final-review-fixes
 - [ ] Хаб профиля совпадает с Active Projects: [[00_profile/tech-stack]], [[00_profile/developer-profile]].
 - [ ] Новый skill зарегистрирован в `60_skills/README.md`.
 - [ ] Skill, если ставили: реально вызван агентом (не только скопирован файл).
-- [ ] Опционально: если есть локальный verify-скрипт — `summary.errors = 0`, включая `scm`. Иначе ручной проход пунктов выше + [[50_runbooks/obsidian-vault-audit]].
+- [ ] `## Related` — точная строка заголовка. Не `## Related Research` и не другой H2 с префиксом Related.
+- [ ] AlwaysApply-стоп без скрипта: ручной проход + [[50_runbooks/obsidian-vault-audit]]. Если есть локальный `verify_projects_data.py` — категория `scm` clean. Полный `errors = 0` — цель журнала, не стоп этой задачи.
 
 ## SCM Validation
 
-Публичный шаблон не требует скриптов. Проверьте, что remote в карточках = ваш `<GIT_REMOTE>`, не remote издателя. Локальный verify — опционально.
+Публичный шаблон не требует скриптов. Проверьте, что remote в карточках = ваш `<GIT_REMOTE>`, не remote издателя.
+
+Если оператор завёл локальный `verify_projects_data.py` — один продукт; `verify_vault.py` — его модуль. AlwaysApply-стоп — `scm` clean. Cache JSON — не источник истины. Верификатор только аудитит.
 
 ## Related
 

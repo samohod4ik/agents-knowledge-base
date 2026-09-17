@@ -1,11 +1,13 @@
 ---
 tags: [skills, workspace, index, cursor]
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # workspace — skills
 
 Кросс-проектные skills. Brief в репозитории шаблона: `skills/<skill-name>/SKILL.md`. Установка: `<SKILLS_ROOT>/<skill-name>/`.
+
+Комментарий к таблице — до или после неё, не внутри строки `| Skill |`.
 
 | Skill | Назначение |
 |-------|------------|

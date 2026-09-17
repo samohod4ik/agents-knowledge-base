@@ -3,13 +3,15 @@ tags: [skills, workspace, research, cursor]
 name: save-research
 status: example
 source_agent: public-template
-last_verified: 2026-09-16
-change_source: public-obsidian-polish
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # save-research
 
 ## Purpose
 Единственный launcher Parallel / локального deep research. Пишет run-пакеты в `<VAULT>/70_researches`. Не `decisions.md`.
+
+Источник истины — user/host `<SKILLS_ROOT>/save-research`. В пакет командных project-rules / team-canon **не копировать**. Brief шаблона — контракт без `scripts/`.
 
 ## Skill Location
 - Brief шаблона: `skills/save-research/SKILL.md`

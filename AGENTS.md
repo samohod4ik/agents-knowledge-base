@@ -12,7 +12,7 @@ These rules apply when editing **this** public repository, not someone's live va
 
 ## Placeholders
 
-Use only: `<VAULT>`, `<SKILLS_ROOT>`, `<PROJECT_ROOT>`, `<GIT_REMOTE>`, `<PORT>`, `<HOST>`. Never hardcode publisher host disks or personal user profile paths.
+Use only: `<VAULT>`, `<SKILLS_ROOT>`, `<PROJECT_ROOT>`, `<STACK_ROOT>`, `<GIT_REMOTE>`, `<PORT>`, `<HOST>`. Never hardcode publisher host disks or personal user profile paths.
 
 ## Do
 

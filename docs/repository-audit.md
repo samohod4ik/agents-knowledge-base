@@ -25,7 +25,7 @@ CI/hygiene тест запрещает в text-файлах абсолютные
 
 ## Product honesty
 
-Этот репозиторий = операционный Obsidian vault + Cursor rules/skills. Он **не** поставляет локальный RAG-рантайм, Telegram-адаптер и живые карточки чужой команды. Примеры в скелете — только `example_library` и `example_service`.
+Этот репозиторий = операционный Obsidian vault + Cursor rules/skills. Он **не** поставляет локальный RAG-рантайм, Telegram-адаптер и живые карточки чужой команды. Примеры в скелете — `example_library`, `example_service` и стек `20_infra/example_stack`.
 
 ## Practical checks
 

@@ -8,6 +8,8 @@ description: >-
 
 # session-distill
 
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. Локальные `scripts/` опциональны; не требуйте отсутствующий doctor как блокер.
+
 Установка: `<SKILLS_ROOT>/session-distill`.
 
 Пишет устойчивые решения сессии в `<VAULT>/10_projects/<slug>/decisions.md`. Это диск, не память модели и не Mem0.

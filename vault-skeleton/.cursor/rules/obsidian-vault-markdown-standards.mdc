@@ -11,9 +11,10 @@ Apply these rules when editing markdown in this vault.
 ## Document Structure
 - Keep a clear H1 title and concise section headers.
 - Include `## Related` with valid Obsidian backlinks for connected docs.
-- Prefer operational sections: Purpose, Run, Risks, Incident, Related.
+- Prefer operational sections: Purpose, Triggers, Risks, Incident, Related.
 - For project README files, include mandatory sections: `Project Location`, `Stack`, and link to `requirements.md`.
-- For skill notes in `60_skills/`: `Purpose`, `Skill Location`, `Triggers`, `Related Projects`, `Related`.
+- For skill notes in `60_skills/`: frontmatter `name:`, `Purpose`, one `Location`, `Triggers`, `Related`. See the skeleton below.
+- `## Run` only when the note is a contract for *installed* scripts under `<SKILLS_ROOT>`. Do not copy another machine's `SKILL.md`.
 
 ## Skills Registry
 - Local project skills only — not default Cursor/plugin skills.
@@ -28,6 +29,7 @@ Apply these rules when editing markdown in this vault.
 
 ## Linking Rules
 - Always use path-qualified wikilinks: `[[10_projects/example_library/runbook]]`.
+- The Related H2 is the exact line `## Related`. Do not use any other H2 that *starts* with `## Related` (anti-pattern: `## Related Research`). Prefix parsers will treat those sections as Related.
 - Project `## Related` must include README + the other three core docs where applicable.
 - Forbid self-links in `## Related`.
 - Profile hub notes (`00_profile/*`) should link to all active `10_projects/*/README`.
@@ -41,10 +43,40 @@ Apply these rules when editing markdown in this vault.
 - Remove stale or contradictory statements in the same edit.
 - Prefer short, actionable bullets over long prose.
 - Do not use placeholder citations like `[web:12]`.
+- Do not break a markdown table by inserting a paragraph inside a row (anti-pattern: a sentence between `| Skill |` cells). Put commentary before or after the table.
+
+## Skill note skeleton
+Required shape for `60_skills/<owner>/<skill-name>.md` (orphans fail `skills_registry` / `skills_index`):
+
+```markdown
+---
+name: <skill-name>
+tags: [skills, <owner>]
+last_verified: YYYY-MM-DD
+change_source: <task>
+---
+# <skill-name>
+
+## Purpose
+One-line contract. No hostnames, DSN, or accounts.
+
+## Triggers
+When the agent must load this skill.
+
+## Location
+`<SKILLS_ROOT>/<skill-name>/SKILL.md`
+
+## Related
+- [[60_skills/README]]
+```
+
+- Frontmatter `name:` is required and must match the filename stem.
+- One Location section only. Paths stay placeholders until you install the skill locally.
+- Do not paste a full foreign `SKILL.md` into the vault note.
 
 ## SCM Naming Policy
 - Document your canonical remote as `<GIT_REMOTE>` in project README when a repo exists.
-- This template publishes via GitHub. Point operational notes at *your* team git host. Do not copy a publisher URL into operational notes.
+- This repository on GitHub is the template publisher. Operational remotes are your `<GIT_REMOTE>`. Do not copy a publisher URL into operational notes.
 
 ## Related
 - [[60_skills/README]]

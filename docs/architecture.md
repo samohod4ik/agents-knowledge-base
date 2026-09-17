@@ -7,8 +7,8 @@
 | Раздел | Назначение |
 |--------|------------|
 | `00_profile/` | Профиль оператора, стек, хаб агента (английский `agent-context`) |
-| `10_projects/` | На slug: README, architecture, runbook, requirements, часто `decisions.md` |
-| `20_infra/` | Серверы, сети, access-matrix (маски), каталог Cursor MCP |
+| `10_projects/` | Прикладной git-репозиторий на slug: квартет README, architecture, runbook, requirements, часто `decisions.md` |
+| `20_infra/` | Серверы, сети, access-matrix (маски), каталог Cursor MCP, стеки `20_infra/<stack>/` без квартета |
 | `30_db/` | Подключения с маскированными секретами, схемы, важные запросы |
 | `40_patterns/` | Паттерны кода и git, стек памяти флота, паттерн общих Cursor rules |
 | `50_runbooks/` | Сопровождение, аудит, гайды по skills, deploy и incident |
@@ -20,7 +20,11 @@
 
 Корневые файлы, которые агент должен ждать: `README.md` (разделы + Active Projects) и `agent-context.md` (короткие правила работы).
 
-Карточки проектов — квартет плюс decisions. Не брать за образец заглушку без architecture, runbook и requirements. В этом шаблоне примеры — `example_library` и `example_service`.
+Карточки **прикладных** проектов — квартет плюс decisions. Не брать за образец заглушку без architecture, runbook и requirements. В этом шаблоне примеры репозиториев — `example_library` и `example_service`.
+
+Стек, compose, общая TDE-почва — это не прикладной репозиторий. Кладёте карточку в `20_infra/<stack>/` (пример: `vault-skeleton/20_infra/example_stack/`). Верификатор `project_quartet` смотрит только `10_projects/`. Не требуйте architecture/runbook/requirements у стека.
+
+Контракт слоёв skills/rules — [layers.md](layers.md). Контракт верификатора — [verify-contract.md](verify-contract.md). Graphify — [graphify.md](graphify.md).
 
 ## Порядок чтения агентом
 
@@ -36,6 +40,8 @@
    - каталог MCP: `20_infra/cursor-mcp.md`
 
 Позиция хаба по памяти: Graphify AST + `decisions.md` + vault-router. Без Mem0 и Antigravity. Deep research идёт в `70_researches/` через `save-research`.
+
+`vault-router` = сначала ответить из vault, затем **один** `move_agent_to_root` на выбранный slug. Не открывать все рабочие репозитории в сайдбаре сразу. Установка Obsidian — [obsidian.md](obsidian.md); этот файл — карта vault.
 
 ## Соглашения по заметкам
 
@@ -115,6 +121,8 @@ Extract Graphify только структурный (`--code-only`, без LLM-
 - Skills, привязанные к хосту (deploy на внутренний хост, SSH в лабораторию, генераторы орг-отчётов)
 - Сырые research-пакеты под `71_runs/`
 
-Заполните плейсхолдеры. Направьте `<GIT_REMOTE>` на *ваш* канонический хост. Этот репозиторий GitHub — канал шаблона, а не замена вашему командному remote.
+Заполните плейсхолдеры. Направьте `<GIT_REMOTE>` на *ваш* канонический хост. Этот репозиторий GitHub — канал издателя шаблона, не замена вашему team remote.
 
 Публичный шаблон везёт skill **briefs** (`SKILL.md`) без обязательных скриптов. Локальные `scripts/` — опциональная собственность оператора; см. [cursor-integration.md](cursor-integration.md) и [obsidian.md](obsidian.md).
+
+Дополнительно: [layers.md](layers.md), [verify-contract.md](verify-contract.md), [graphify.md](graphify.md), [CONTRIBUTING.md](../CONTRIBUTING.md).

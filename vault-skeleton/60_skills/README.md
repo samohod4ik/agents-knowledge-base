@@ -1,7 +1,7 @@
 ---
 tags: [skills, index, cursor, entrypoint]
-last_verified: 2026-09-09
-change_source: task-6-cursor-rules-skills
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # Cursor Skills
 
@@ -11,10 +11,20 @@ change_source: task-6-cursor-rules-skills
 
 ## Create / update / archive / verify
 
-- **Create:** brief → `SKILL.md` в `<SKILLS_ROOT>` → заметка `60_skills/<owner>/<skill-name>.md` → строка в этой таблице → Related в проектах.
-- **Update:** правьте brief и vault-указатель в том же ходе; докажите discovery вызовом.
-- **Archive:** снимите из Active registry, оставьте forward-link; не оставляйте триггеры на мёртвый skill.
-- **Verify:** [[50_runbooks/skill-checklist]]; файл на диске ≠ работает.
+| Лейн | Действие |
+|------|----------|
+| create | `SKILL.md` в `<SKILLS_ROOT>/<name>/` → заметка из [[60_skills/_templates/skill-note]] → строка в этом README → `## Cursor Skills` в README проекта |
+| update | Тот же ход: brief + заметка + индекс. `last_verified` / `change_source`. Докажите discovery вызовом |
+| archive | Убрать из индекса и `## Cursor Skills`. Заметку перенести в `90_archive/` или пометить `archived` |
+| verify | `name:` совпадает со stem; имя есть в этом README; нет orphan; [[50_runbooks/skill-checklist]]; файл на диске ≠ работает |
+
+## Как создавать новый skill
+1. Взять brief из `skills/<skill-name>/` этого репозитория или создать `<SKILLS_ROOT>/<skill-name>/SKILL.md`.
+2. Пройти [[50_runbooks/skill-checklist]].
+3. **Обязательно** добавить заметку в `60_skills/<owner>/<skill-name>.md` из [[60_skills/_templates/skill-note]] (`name:`, Triggers, один Location, без хостов).
+4. Обновить `## Cursor Skills` и точный `## Related` в README связанных проектов (`10_projects/*`).
+
+`## Run` в заметке vault — только если это контракт *установленных* скриптов, не копия чужого `SKILL.md`.
 
 Не публикуйте в шаблоне skills с учётными данными или привязкой к одному внутреннему хосту.
 

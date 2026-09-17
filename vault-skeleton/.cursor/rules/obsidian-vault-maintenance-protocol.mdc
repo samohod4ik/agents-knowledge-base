@@ -20,6 +20,9 @@ Apply this protocol whenever code, infrastructure, database, or operations conte
 - Process or policy changes -> update `40_patterns/**/*` and `50_runbooks/**/*`.
 - Profile/stack changes -> update `00_profile/{agent-context,developer-profile,tech-stack}.md`.
 - New or changed Cursor project skills -> update `60_skills/<owner>/<skill-name>.md` and link from related `10_projects/*/README`.
+- 2a. Durable session decision -> `10_projects/<project>/decisions.md` (skill `session-distill`). Not Mem0 and not a facts registry.
+- 2b. Deep-research reports -> `70_researches` (skill `save-research`), not `decisions.md`.
+- 2c. After a semantic code change -> update the AST graph in the *project repository* (`graphify-maintain`, `GRAPH_REPORT.md`, `--code-only` only). The graph does not live in the vault.
 
 ## Quality Requirements
 - Keep YAML frontmatter with contextual `tags` in every maintained `.md`.
@@ -48,10 +51,12 @@ Apply this protocol whenever code, infrastructure, database, or operations conte
 
 ## SCM Policy
 - Document your canonical remote as `<GIT_REMOTE>`. That is the clone URL of *your* working repositories.
-- This template publishes via GitHub. Your team git host may differ. Do not treat the publisher GitHub remote as your team forge unless you are forking the template itself.
-- Before completing maintenance tasks, run the pre-completion checklist in [[50_runbooks/maintenance]] (and optionally a local verify script if you maintain one). Public template does not require unpublished scripts.
+- This repository on GitHub is the *template publisher*. Your team remote is `<GIT_REMOTE>` (any host). Do not treat the publisher remote as your team forge unless you are forking the template itself.
+- Before completing maintenance tasks, run the pre-completion checklist in [[50_runbooks/maintenance]]. The public template does not require unpublished scripts.
+- If the operator maintains a local `verify_projects_data.py`, AlwaysApply stop is category `scm` clean only. `verify_vault.py` is a module of the same implementation, not a second product. Full `errors = 0` is a journal goal, not a task stop.
 
 ## Completion Gate
 - Do not finish a task if relevant Obsidian docs are stale.
 - Before final response, verify affected docs were updated and internally consistent.
 - Run pre-completion checklist from [[50_runbooks/maintenance]].
+- Optional local verifier name: `verify_projects_data.py`. If present, stop = `scm` clean. Do not fail the task on leftover categories you did not touch.
