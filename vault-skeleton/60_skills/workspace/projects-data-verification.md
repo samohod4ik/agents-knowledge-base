@@ -1,13 +1,15 @@
 ---
 tags: [skills, workspace, obsidian, audit, cursor]
 name: projects-data-verification
-last_verified: 2026-09-09
-change_source: final-review-fixes
+last_verified: 2026-09-17
+change_source: public-template-contract
 ---
 # projects-data-verification
 
 ## Purpose
-Read-only аудит vault `<VAULT>` и локальных проектов: карточки, rules, `AGENTS.md`, реестр skills, SCM относительно `<GIT_REMOTE>`. Скрипты не правят vault. Бывший контур `obsidian-vault-verification`.
+Read-only аудит vault `<VAULT>` и локальных проектов. Brief шаблона — контракт: `scripts/` в репозитории шаблона нет; doctor падает, пока нет локальной реализации. Скрипты не правят vault. Бывший контур `obsidian-vault-verification`.
+
+Категории контракта: `project_quartet` (только `10_projects/`), `library_links` (точный `## Related`), `inventory` (прямые git-дети `projects_root`), `skills_registry` / `skills_index` (`name:` + имя в `60_skills/README`), `scm`. Cache JSON не SoT. AlwaysApply-успех = `scm` clean; `errors = 0` — журнал.
 
 ## Skill Location
 - Brief шаблона: `skills/projects-data-verification/SKILL.md`

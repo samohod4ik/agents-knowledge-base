@@ -8,6 +8,8 @@ description: >-
 
 # session-distill
 
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. `doctor` падает, пока нет локальной реализации в `<SKILLS_ROOT>/session-distill/`.
+
 Установка: `<SKILLS_ROOT>/session-distill`.
 
 Пишет устойчивые решения сессии в `<VAULT>/10_projects/<slug>/decisions.md`. Это диск, не память модели и не Mem0.

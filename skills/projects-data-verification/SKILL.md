@@ -9,6 +9,8 @@ description: >-
 
 # Projects Data Verification
 
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. `doctor` падает, пока нет локальной реализации в `<SKILLS_ROOT>/projects-data-verification/`.
+
 ## Назначение
 
 Read-only аудит vault `<VAULT>` и параллельная проверка локальных проектов: карточки, общие Cursor rules, `AGENTS.md`, реестр skills, SCM относительно вашего `<GIT_REMOTE>`.
@@ -44,10 +46,19 @@ Exit code `1` при error-level findings. Warnings не роняют `ok`. Runt
 
 ## Что проверяет
 
-- Hub, квартет карточек, frontmatter, tags, Related, self-link.
-- Active project ↔ путь на диске ↔ slug vault ↔ ваш `<GIT_REMOTE>`.
-- Реестр skills: полнота индекса, папка owner, все Skill Location, обязательный `name:`.
-- Согласованность общих Cursor rules (frontmatter/хеш канона команды), без печати секретов.
+Категории контракта (имена как в отчёте):
+
+| Категория | Смысл |
+|-----------|--------|
+| `project_quartet` | У каждого slug в `10_projects/` есть README + architecture + runbook + requirements. Стеки в `20_infra/` сюда не входят |
+| `library_links` | Взаимные wikilink **только** в точном H2 `## Related`. Префикс (`## Related Research`) — не Related |
+| `inventory` | Прямые git-дети `projects_root`. Клон этого шаблона там — ошибка; потребитель может `excluded` с reason `public` |
+| `skills_registry` / `skills_index` | Frontmatter `name:` + имя в `60_skills/README`. Cache JSON не SoT |
+| `scm` | Remote в заметках совпадает с вашим `<GIT_REMOTE>` |
+
+Также: hub, frontmatter, tags, self-link, Active project ↔ путь на диске ↔ slug vault.
+
+Не подменяйте верификатор одиночным `verify_vault.py` — это модуль той же реализации.
 
 ## Fallback
 
@@ -57,4 +68,4 @@ Exit code `1` при error-level findings. Warnings не роняют `ok`. Runt
 
 ## Успех
 
-`summary.errors = 0`, включая категорию `scm`. JSON-отчёт существует. Скрипт не менял vault и docs.
+AlwaysApply-стоп: категория `scm` clean. Полный `errors = 0` — цель журнала аудита, не стоп задачи сопровождения. JSON-отчёт существует. Cache JSON — не источник истины. Скрипт не менял vault и docs.
