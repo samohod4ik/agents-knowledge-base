@@ -43,16 +43,15 @@ change_source: public-template-contract
 - [ ] Секреты замаскированы. Инфра ссылается на [[20_infra/access-matrix]] (`***` или `secret_ref`).
 - [ ] Хаб профиля совпадает с Active Projects: [[00_profile/tech-stack]], [[00_profile/developer-profile]].
 - [ ] Новый skill зарегистрирован в `60_skills/README.md`.
-- [ ] AlwaysApply-стоп: категория `scm` чистая. Полный `errors = 0` — цель журнала аудита, не стоп этой задачи.
+- [ ] Skill, если ставили: реально вызван агентом (не только скопирован файл).
 - [ ] `## Related` — точная строка заголовка. Не `## Related Research` и не другой H2 с префиксом Related.
+- [ ] AlwaysApply-стоп без скрипта: ручной проход + [[50_runbooks/obsidian-vault-audit]]. Если есть локальный `verify_projects_data.py` — категория `scm` clean. Полный `errors = 0` — цель журнала, не стоп этой задачи.
 
 ## SCM Validation
 
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
-```
+Публичный шаблон не требует скриптов. Проверьте, что remote в карточках = ваш `<GIT_REMOTE>`, не remote издателя.
 
-Один верификатор: `verify_projects_data.py`. AlwaysApply-стоп — категория `scm` clean. `verify_vault.py` — модуль той же реализации, не второй продукт. Полный `errors = 0` пишите в журнал аудита; leftover чужих категорий задачу не валит. Верификатор — только аудит, без автоисправления. Cache JSON — не источник истины.
+Если оператор завёл локальный `verify_projects_data.py` — один продукт; `verify_vault.py` — его модуль. AlwaysApply-стоп — `scm` clean. Cache JSON — не источник истины. Верификатор только аудитит.
 
 ## Related
 

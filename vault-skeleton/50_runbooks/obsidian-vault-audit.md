@@ -1,22 +1,19 @@
 ---
 tags: [runbook, audit, vault, maintenance]
+status: example
+source_agent: public-template
 last_verified: 2026-09-17
 change_source: public-template-contract
 ---
 # Obsidian Vault Audit
 
-Журнал проходов аудита. Верификатор `projects-data-verification` — только аудит: нет флага автоисправления. AlwaysApply-стоп = `scm` clean. Полный `errors = 0` — цель журнала.
+Журнал проходов аудита. Skill `projects-data-verification` — только аудит: нет автоисправления. AlwaysApply-стоп без скрипта = чеклист + эта страница. Со скриптом стоп = `scm` clean. Полный `errors = 0` — цель журнала.
 
 ## Как проводить pass
 
-1. Убедитесь, что brief и скрипты стоят в `<SKILLS_ROOT>/projects-data-verification/`.
-2. Запустите:
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
-```
-
-3. Запишите дату, команду, `summary.errors` / warnings и оставшиеся gaps.
+1. Установите brief `projects-data-verification` в `<SKILLS_ROOT>/` (или следуйте его workflow вручную).
+2. Пройдите Active Projects, frontmatter, path-wikilinks, реестр skills, маски секретов, `<GIT_REMOTE>`.
+3. Запишите дату, метод (`manual` или имя локального скрипта), errors / warnings и оставшиеся gaps.
 4. Не переносите сюда чужие SHA, внутренние хосты и исключения исходного vault.
 
 ## Pass template
@@ -24,8 +21,8 @@ python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 | Поле | Значение |
 |------|----------|
 | date | `YYYY-MM-DD` |
-| command | `verify_projects_data.py` |
-| errors | число (цель журнала `0`; стоп задачи — только грязный `scm`) |
+| method | `manual` / optional local `verify_projects_data.py` |
+| errors | число (цель журнала `0`; стоп задачи — только грязный `scm`, и только если скрипт есть) |
 | warnings | список или «нет» |
 | scm | `clean` / список findings |
 | leftover | сознательный долг вне скоупа pass |
@@ -38,7 +35,7 @@ python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 | Поле | До | После |
 |------|----|-------|
 | date | 2026-09-17 | 2026-09-17 |
-| command | `verify_projects_data.py` | `verify_projects_data.py` |
+| method | `verify_projects_data.py` (optional) | `verify_projects_data.py` (optional) |
 | errors | 4 | 1 |
 | warnings | 1 (`example_library` без ссылки на образец stack-note — вне скоупа) | 1 (тот же warning) |
 | scm | clean | clean |

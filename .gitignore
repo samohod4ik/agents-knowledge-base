@@ -5,6 +5,9 @@
 **/*.pem
 **/id_rsa*
 **/secrets/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
 vault-skeleton/70_researches/71_runs/71.01_raw_runs/**
 *.log
 Thumbs.db

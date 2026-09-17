@@ -1,13 +1,25 @@
 ---
+id: template-example-library-readme
+kind: note
+status: example
+date: 2026-09-16
 tags: [project, example_library, library, python]
-last_verified: 2026-09-09
-change_source: task-5-example-projects
+source_agent: public-template
+last_verified: 2026-09-16
+change_source: public-obsidian-polish
 ---
 # example_library
 
 ## Purpose
 
 Общая Python-библиотека для нескольких потребителей: клиент, модели, утилиты. Это пример карточки, не живой внутренний пакет. Код живёт в git-репозитории, не в vault.
+
+## Create / update / archive / verify
+
+- **Create:** квартет README / architecture / runbook / requirements; при why — `decisions.md`; строка в Active Projects.
+- **Update:** после code/deps/infra — те же файлы в том же ходе (см. [[50_runbooks/maintenance]]).
+- **Archive:** карточку в `90_archive/` с forward-link; снять из Active Projects.
+- **Verify:** path-wikilinks, Stack, Project Location, маски секретов.
 
 ## Project Location
 

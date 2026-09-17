@@ -8,7 +8,7 @@ description: >-
 
 # session-distill
 
-Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. `doctor` падает, пока нет локальной реализации в `<SKILLS_ROOT>/session-distill/`.
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. Локальные `scripts/` опциональны; не требуйте отсутствующий doctor как блокер.
 
 Установка: `<SKILLS_ROOT>/session-distill`.
 
@@ -21,31 +21,20 @@ description: >-
 - просят поставить Mem0 / Antigravity Memory / второй SQLite;
 - сырые или структурированные research-отчёты — это `70_researches` (skill `save-research`).
 
-## Doctor
-
-Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/session-distill/` до запуска Doctor и остальных команд.
-
-```powershell
-python <SKILLS_ROOT>/session-distill/scripts/doctor.py
-```
-
-`ok` требует `<VAULT>/10_projects` и шаблон `assets/decisions-template.md`.
-
 ## Workflow
 
-1. Doctor.
-2. Определи slug: skill `vault-router` / `resolve_project.py --name <slug>`.
-3. Прочитай `<VAULT>/10_projects/<slug>/decisions.md`. Нет файла — создай по шаблону `assets/decisions-template.md`.
-4. Добавь только устойчивые факты (3–7 за сессию): дата, решение, антирешение, SHA/issue. Без секретов и PII.
-5. Держи файл короче 200 строк. Детали — в architecture/runbook.
-6. Обнови `last_verified` / `change_source`. Связанные architecture/runbook — только если решение их меняет.
-7. MCP Obsidian предпочтителен; иначе правь файлы vault напрямую и скажи об этом.
+1. Определи slug (Active Projects / skill `vault-router`). Не выдумывай папку.
+2. Прочитай `<VAULT>/10_projects/<slug>/decisions.md`. Нет файла — создай с frontmatter (`tags`, `last_verified`, `change_source`) и короткими секциями Decision / Anti-decision / Context.
+3. Добавь только устойчивые факты (обычно 3–7 за сессию): дата, решение, антирешение, SHA/issue. Без секретов и PII.
+4. Держи файл обозримым (ориентир < 200 строк). Детали — в architecture/runbook.
+5. Обнови `last_verified` / `change_source`. Связанные architecture/runbook — только если решение их меняет.
+6. MCP Obsidian предпочтителен; иначе правь файлы vault напрямую и скажи об этом.
 
-## Fallback
+## Запреты
 
-- Нет MCP Obsidian — файлы vault напрямую.
-- Нет slug — спроси пользователя, не выдумывай папку.
-- Итеративный цикл агента: пиши на диск (`decisions.md`), не в «память чата».
+- Писать «память» только в чат
+- Дублировать ADR под `70_researches/`
+- Требовать локальный `scripts/doctor.py` или шаблон `assets/`, которых нет в публичном дереве
 
 ## Успех
 

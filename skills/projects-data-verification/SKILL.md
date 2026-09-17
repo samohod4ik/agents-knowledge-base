@@ -7,65 +7,37 @@ description: >-
   60_skills, skill-checklist.
 ---
 
-# Projects Data Verification
+# projects-data-verification
 
-Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. `doctor` падает, пока нет локальной реализации в `<SKILLS_ROOT>/projects-data-verification/`.
+Это **контракт**, не поставка автоматизации. Каталога `scripts/` в этом шаблоне нет. Локальные `scripts/` — опциональная собственность оператора; без них выполняйте проверки по файлам.
 
-## Назначение
+Установка: `<SKILLS_ROOT>/projects-data-verification`.
 
-Read-only аудит vault `<VAULT>` и параллельная проверка локальных проектов: карточки, общие Cursor rules, `AGENTS.md`, реестр skills, SCM относительно вашего `<GIT_REMOTE>`.
+Read-only аудит vault `<VAULT>`: карточки проектов, Cursor rules, реестр skills, формулировки SCM относительно вашего `<GIT_REMOTE>`.
 
-Скрипты только читают и пишут JSON-отчёт. Они не правят vault, rules, hooks и код проектов. Подтверждённые правки docs — отдельный запрос по протоколу сопровождения, не режим этого skill.
+**Не используй**, когда нужно только обновить один project README после code change, или пользователь просит не трогать Obsidian и не проверять docs.
 
-Покрывает бывший контур `obsidian-vault-verification`. Старые триггеры (`проверка Obsidian`, `obsidian-vault-audit`) остаются валидными.
+## Workflow
 
-**Не используй**, когда:
-- нужно только обновить один project README после code change;
-- пользователь просит не трогать Obsidian и не проверять docs.
+1. Открой `<VAULT>/README.md` и список Active Projects.
+2. Для каждого активного slug в `10_projects/` проверь квартет: `README`, `architecture`, `runbook`, `requirements` (+ `decisions.md`, если есть). Стеки в `20_infra/` в квартет не входят.
+3. Frontmatter: закрывающий `---`, `tags`, `last_verified`, `change_source`.
+4. Wikilink только с путём; нет self-link в точном H2 `## Related`. Префикс (`## Related Research`) — не Related.
+5. `## Project Location` и remote в заметках совпадают с *вашим* `<GIT_REMOTE>` / диском — не с remote издателя шаблона.
+6. Реестр: каждый локальный skill имеет `name:` в `60_skills/<owner>/<skill-name>.md` и строку в `60_skills/README.md`.
+7. `inventory`: прямые git-дети `projects_root`. Клон этого шаблона там — ошибка, либо `excluded` с reason `public`.
+8. Секреты: в `20_infra` / `30_db` только маски или `secret_ref`.
+9. Запиши findings в `50_runbooks/obsidian-vault-audit.md` (два снимка: до / после, если правили). Cache JSON не SoT. Не автофикси docs без явной просьбы.
 
-## Doctor
+Если у оператора есть локальный `verify_projects_data.py` — это тот же продукт; `verify_vault.py` — модуль, не второй верификатор. Не требуйте отсутствующий скрипт как единственный путь успеха.
 
-Публичный шаблон везёт только этот brief (`SKILL.md`), без исполняемых скриптов. Команды ниже — контракт совместимой локальной реализации. Установите или предоставьте её в `<SKILLS_ROOT>/projects-data-verification/` до запуска Doctor и остальных команд.
+## Запреты
 
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/doctor.py
-```
-
-Doctor падает, если нет скрипта скилла, корня `<VAULT>` / workspace или конфига инвентаря проектов.
-
-## Run
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py `
-  --output <SKILLS_ROOT>/projects-data-verification/cache/verify_report.json
-```
-
-Не подменяйте этот верификатор одиночным `verify_vault.py`. Cache — артефакт свежего прогона, не источник истины.
-
-Exit code `1` при error-level findings. Warnings не роняют `ok`. Runtime probes без evidence получают статус `not_tested` и не считаются regression.
-
-## Что проверяет
-
-Категории контракта (имена как в отчёте):
-
-| Категория | Смысл |
-|-----------|--------|
-| `project_quartet` | У каждого slug в `10_projects/` есть README + architecture + runbook + requirements. Стеки в `20_infra/` сюда не входят |
-| `library_links` | Взаимные wikilink **только** в точном H2 `## Related`. Префикс (`## Related Research`) — не Related |
-| `inventory` | Прямые git-дети `projects_root`. Клон этого шаблона там — ошибка; потребитель может `excluded` с reason `public` |
-| `skills_registry` / `skills_index` | Frontmatter `name:` + имя в `60_skills/README`. Cache JSON не SoT |
-| `scm` | Remote в заметках совпадает с вашим `<GIT_REMOTE>` |
-
-Также: hub, frontmatter, tags, self-link, Active project ↔ путь на диске ↔ slug vault.
-
-Не подменяйте верификатор одиночным `verify_vault.py` — это модуль той же реализации.
-
-## Fallback
-
-- Нет скрипта — остановись и скажи, что brief не установлен в `<SKILLS_ROOT>`.
-- Нет MCP Obsidian — читай `<VAULT>` с диска; отчёт всё равно пишет скрипт.
-- Нет конфига инвентаря — не выдумывай список проектов.
+- Автоисправление vault «заодно»
+- Выдумывать список проектов, если Active Projects пуст
+- Требовать отсутствующий `scripts/doctor.py` как единственный путь успеха
+- Печатать секреты в отчёт
 
 ## Успех
 
-AlwaysApply-стоп: категория `scm` clean. Полный `errors = 0` — цель журнала аудита, не стоп задачи сопровождения. JSON-отчёт существует. Cache JSON — не источник истины. Скрипт не менял vault и docs.
+AlwaysApply-стоп без скрипта: чеклист в [docs/cursor-integration.md](../../docs/cursor-integration.md#pre-completion-checklist) и gaps в audit-журнале. Со скриптом — категория `scm` clean; полный `errors = 0` — цель журнала, не стоп задачи. Vault и rules skillом не менялись.

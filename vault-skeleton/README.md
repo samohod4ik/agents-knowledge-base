@@ -1,8 +1,13 @@
 ---
+id: template-vault-readme
+kind: note
+status: example
+date: 2026-09-16
 tags:
   - vault
   - index
   - entrypoint
+source_agent: public-template
 last_verified: 2026-09-17
 change_source: public-template-contract
 ---

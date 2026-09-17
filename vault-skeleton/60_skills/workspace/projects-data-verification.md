@@ -1,20 +1,22 @@
 ---
 tags: [skills, workspace, obsidian, audit, cursor]
 name: projects-data-verification
+status: example
+source_agent: public-template
 last_verified: 2026-09-17
 change_source: public-template-contract
 ---
 # projects-data-verification
 
 ## Purpose
-Read-only аудит vault `<VAULT>` и локальных проектов. Brief шаблона — контракт: `scripts/` в репозитории шаблона нет; doctor падает, пока нет локальной реализации. Скрипты не правят vault. Бывший контур `obsidian-vault-verification`.
+Read-only аудит vault `<VAULT>`: карточки, rules, реестр skills, SCM относительно `<GIT_REMOTE>`. Публичный brief без обязательных скриптов. Бывший контур `obsidian-vault-verification`.
 
-Категории контракта: `project_quartet` (только `10_projects/`), `library_links` (точный `## Related`), `inventory` (прямые git-дети `projects_root`), `skills_registry` / `skills_index` (`name:` + имя в `60_skills/README`), `scm`. Cache JSON не SoT. AlwaysApply-успех = `scm` clean; `errors = 0` — журнал.
+Категории контракта: `project_quartet` (только `10_projects/`), `library_links` (точный `## Related`), `inventory` (прямые git-дети `projects_root`), `skills_registry` / `skills_index` (`name:` + имя в `60_skills/README`), `scm`. Cache JSON не SoT. AlwaysApply-успех без скрипта = чеклист + журнал; со скриптом = `scm` clean.
 
 ## Skill Location
 - Brief шаблона: `skills/projects-data-verification/SKILL.md`
 - Установка: `<SKILLS_ROOT>/projects-data-verification/SKILL.md`
-- Scripts: `scripts/doctor.py`, `scripts/verify_projects_data.py`
+- Scripts: опционально у оператора; в публичном дереве отсутствуют
 
 ## Triggers
 проверка Obsidian, аудит vault, верификация документации, obsidian-vault-audit, projects-data-verification, projects_data_verification, целостность правил, качество хранилища, 60_skills, skill-checklist.
@@ -23,18 +25,8 @@ Read-only аудит vault `<VAULT>` и локальных проектов. Bri
 - [[10_projects/example_library/README]]
 - [[10_projects/example_service/README]]
 
-## Doctor
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/doctor.py
-```
-
 ## Run
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py `
-  --output <SKILLS_ROOT>/projects-data-verification/cache/verify_report.json
-```
-
-Не подменяйте верификатор одиночным `verify_vault.py`.
+Следуйте workflow в brief: ручной проход Active Projects, frontmatter, wikilink, SCM, реестр skills; findings → [[50_runbooks/obsidian-vault-audit]].
 
 ## Related
 - [[60_skills/workspace/README]]

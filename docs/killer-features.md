@@ -44,7 +44,7 @@ Completion gate: устаревшие связанные заметки знач
 
 `60_skills/` — индекс локальных project skills, а не вставка дефолтных skills Cursor или плагинов.
 
-- Источник истины поведения — `SKILL.md` рядом со скриптами. Заметка vault хранит purpose, location, triggers и связи.
+- Источник истины поведения в публичном шаблоне — `SKILL.md` (brief). Локальные `scripts/` опциональны и не входят в git. Заметка vault хранит purpose, location, triggers и связи.
 - Owner — slug проекта или `workspace` для кросс-проектных skills.
 - Создать skill без заметки vault — способ потерять trigger на следующей неделе.
 
@@ -59,7 +59,7 @@ Brief, безопасные для шаблона, лежат в `skills/`:
 
 `graphify-maintain` **не** пятый публичный skill этого шаблона. Контракт — [docs/graphify.md](graphify.md): граф в репозитории проекта, `--code-only`, не в vault. Не публиковать skills с учётными данными или только для одной организации.
 
-Skill — слой процесса: когда звать MCP или CLI, сначала doctor, fallback, критерии успеха. MCP и CLI — руки. Skill — регламент.
+Skill — слой процесса: когда / не когда, workflow на диске, fallback, критерии успеха. MCP и CLI — руки. Skill — регламент. Файл brief на диске ≠ доказательство discovery — вызовите skill один раз.
 
 ## Архив исследований
 
@@ -94,15 +94,11 @@ Deep-research — не этот стек. Таблицы фактов KPI/пас
 Разрывы качества нуждаются в журнале, а не в разовой уборке.
 
 - `50_runbooks/obsidian-vault-audit.md` фиксирует проходы аудита и оставшиеся gaps.
-- `projects-data-verification` — только аудит: без флага автоисправления. Один продукт: `verify_projects_data.py`. `verify_vault.py` — его модуль, не второй верификатор.
+- `projects-data-verification` — только аудит: без автоисправления. По brief проверяет frontmatter, wikilink с путём, регистрацию skills, формулировки SCM и инвентарь **вручную по файлам**. Локальный скрипт оператора опционален.
+- Один продукт, если скрипт есть: `verify_projects_data.py`. `verify_vault.py` — его модуль, не второй верификатор.
 - Категории контракта: `project_quartet`, `library_links` (точный `## Related`), `inventory` (прямые git-дети `projects_root`), `skills_registry` / `skills_index`, `scm`.
-- AlwaysApply-стоп — категория `scm` clean. Полный `errors = 0` — цель журнала аудита, не стоп задачи.
-- Опциональная команда (после установки brief *и* локальных скриптов):
-
-```powershell
-python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
-```
-
-Cache JSON — не источник истины. Подробнее: [docs/verify-contract.md](verify-contract.md).
+- AlwaysApply-стоп без скрипта — чеклист + журнал. Со скриптом — категория `scm` clean. Полный `errors = 0` — цель журнала, не стоп задачи.
+- Cache JSON — не источник истины. Подробнее: [docs/verify-contract.md](verify-contract.md).
+- Обязательный успех публичного шаблона: чеклист в [cursor-integration.md](cursor-integration.md#pre-completion-checklist) и журнал [50_runbooks/obsidian-vault-audit](../vault-skeleton/50_runbooks/obsidian-vault-audit.md).
 
 Не храните пароли открытым текстом в заметках инфры. `30_db` маскирует секреты. Строки access-matrix в скелете — `***` или `secret_ref: vault://...`, никогда живые значения. Исключения исходного vault по секретам в этот шаблон не входят.

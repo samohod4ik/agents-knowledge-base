@@ -52,10 +52,11 @@ Apply this protocol whenever code, infrastructure, database, or operations conte
 ## SCM Policy
 - Document your canonical remote as `<GIT_REMOTE>`. That is the clone URL of *your* working repositories.
 - This repository on GitHub is the *template publisher*. Your team remote is `<GIT_REMOTE>` (any host). Do not treat the publisher remote as your team forge unless you are forking the template itself.
-- Before completing maintenance tasks, run `python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py`. AlwaysApply stop is category `scm` clean only. `verify_vault.py` is a module of the same implementation, not a second product. Full `errors = 0` is a journal goal, not a task stop.
+- Before completing maintenance tasks, run the pre-completion checklist in [[50_runbooks/maintenance]]. The public template does not require unpublished scripts.
+- If the operator maintains a local `verify_projects_data.py`, AlwaysApply stop is category `scm` clean only. `verify_vault.py` is a module of the same implementation, not a second product. Full `errors = 0` is a journal goal, not a task stop.
 
 ## Completion Gate
 - Do not finish a task if relevant Obsidian docs are stale.
 - Before final response, verify affected docs were updated and internally consistent.
 - Run pre-completion checklist from [[50_runbooks/maintenance]].
-- One verifier name: `verify_projects_data.py`. AlwaysApply stop = `scm` clean. Do not fail the task on leftover categories you did not touch.
+- Optional local verifier name: `verify_projects_data.py`. If present, stop = `scm` clean. Do not fail the task on leftover categories you did not touch.

@@ -1,5 +1,10 @@
 ---
+id: template-example-service-readme
+kind: note
+status: example
+date: 2026-09-16
 tags: [project, example_service, service, python, fastapi]
+source_agent: public-template
 last_verified: 2026-09-17
 change_source: public-template-contract
 ---
@@ -8,6 +13,13 @@ change_source: public-template-contract
 ## Purpose
 
 HTTP API плюс фоновый worker. Пример карточки сервиса: Run и Config без живых хостов. Очередь и факты — контур `example_app` из [[30_db/connections]].
+
+## Create / update / archive / verify
+
+- **Create:** квартет README / architecture / runbook / requirements; при why — `decisions.md`; строка в Active Projects.
+- **Update:** после code/deps/infra — те же файлы в том же ходе (см. [[50_runbooks/maintenance]]).
+- **Archive:** карточку в `90_archive/` с forward-link; снять из Active Projects.
+- **Verify:** path-wikilinks, Stack, Project Location, маски секретов.
 
 ## Project Location
 

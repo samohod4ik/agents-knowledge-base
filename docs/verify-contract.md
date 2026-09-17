@@ -1,24 +1,26 @@
 # Контракт verify
 
-Публичный шаблон не везёт исполняемые скрипты. Имена и категории ниже — контракт совместимой локальной реализации `projects-data-verification`.
+Публичный шаблон не везёт исполняемые скрипты и не требует их для успеха. Имена и категории ниже — контракт ручного прохода и совместимой *опциональной* локальной реализации `projects-data-verification`.
 
-Один продукт: `verify_projects_data.py`. `verify_vault.py` — модуль той же реализации, не второй верификатор.
+Один продукт, если скрипт есть: `verify_projects_data.py`. `verify_vault.py` — модуль той же реализации, не второй верификатор.
 
 ```powershell
 python <SKILLS_ROOT>/projects-data-verification/scripts/verify_projects_data.py
 ```
 
+Без скрипта закройте те же категории чеклистом и журналом аудита.
+
 ## Категории
 
 | Категория | Что ломает | Что делать |
 |-----------|------------|------------|
-| `scm` | Remote в заметках ≠ ваш `<GIT_REMOTE>` | AlwaysApply-стоп. Пока `scm` грязный — задачу не закрывать |
+| `scm` | Remote в заметках ≠ ваш `<GIT_REMOTE>` | AlwaysApply-стоп, если скрипт есть. Без скрипта — не закрывать задачу, пока remote в заметках врёт |
 | `project_quartet` | Slug в `10_projects/` без README / architecture / runbook / requirements | Квартет только для прикладных репо. Стек → `20_infra/<stack>/` |
 | `library_links` | Нет взаимного wikilink в точном `## Related` | Резать Related по точной строке H2, не по prefix |
 | `inventory` | Прямой git-ребёнок `projects_root` не в манифесте | Не класть клон шаблона рядом с рабочими репо; либо `excluded` reason `public` |
 | `skills_registry` / `skills_index` | Нет `name:` или имени в `60_skills/README` | Заметка из `60_skills/_templates/skill-note.md` в том же ходе |
 
-Полный `errors = 0` — цель журнала аудита. Leftover чужих категорий задачу сопровождения не валит, если `scm` чистый и вы их не трогали.
+Полный `errors = 0` — цель журнала аудита. Leftover чужих категорий задачу сопровождения не валит, если `scm` чистый (или ручной SCM-чеклист зелёный) и вы их не трогали.
 
 ## Sibling git в `projects_root`
 

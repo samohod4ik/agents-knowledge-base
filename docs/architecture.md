@@ -41,7 +41,7 @@
 
 Позиция хаба по памяти: Graphify AST + `decisions.md` + vault-router. Без Mem0 и Antigravity. Deep research идёт в `70_researches/` через `save-research`.
 
-`vault-router` = сначала ответить из vault, затем **один** `move_agent_to_root` на выбранный slug. Не открывать все рабочие репозитории в сайдбаре сразу. Отдельный `docs/obsidian.md` не нужен: UI Obsidian — граф и Local REST, карта — этот файл.
+`vault-router` = сначала ответить из vault, затем **один** `move_agent_to_root` на выбранный slug. Не открывать все рабочие репозитории в сайдбаре сразу. Установка Obsidian — [obsidian.md](obsidian.md); этот файл — карта vault.
 
 ## Соглашения по заметкам
 
@@ -122,5 +122,7 @@ Extract Graphify только структурный (`--code-only`, без LLM-
 - Сырые research-пакеты под `71_runs/`
 
 Заполните плейсхолдеры. Направьте `<GIT_REMOTE>` на *ваш* канонический хост. Этот репозиторий GitHub — канал издателя шаблона, не замена вашему team remote.
+
+Публичный шаблон везёт skill **briefs** (`SKILL.md`) без обязательных скриптов. Локальные `scripts/` — опциональная собственность оператора; см. [cursor-integration.md](cursor-integration.md) и [obsidian.md](obsidian.md).
 
 Дополнительно: [layers.md](layers.md), [verify-contract.md](verify-contract.md), [graphify.md](graphify.md), [CONTRIBUTING.md](../CONTRIBUTING.md).
